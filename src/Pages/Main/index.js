@@ -1,9 +1,14 @@
 import React from "react";
+import * as S from "./style";
+import data from "../../dummy.json";
+import Post from "../../components/Post";
 
 export default function Main() {
   return (
-    <div>
-      <h1>main</h1>
-    </div>
+    <S.MainWrapper>
+      {data.map((data) => (
+        <Post data={data} />
+      ))}
+    </S.MainWrapper>
   );
 }

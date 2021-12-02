@@ -4,6 +4,7 @@ export const HeaderWrapper = styled.header`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   height: 10vh;
+  margin-bottom: 50px;
 
   .logo {
     display: flex;

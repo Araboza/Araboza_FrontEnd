@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": false
+  },
+  {
+    "id": 2,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": true
+  },
+  {
+    "id": 3,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": false
+  },
+  {
+    "id": 4,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": true
+  },
+  {
+    "id": 5,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": false
+  },
+  {
+    "id": 6,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": false
+  },
+  {
+    "id": 7,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": false
+  },
+  {
+    "id": 8,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": false
+  },
+  {
+    "id": 9,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": false
+  },
+  {
+    "id": 10,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": false
+  },
+  {
+    "id": 11,
+    "img": "./Teemo.jpg",
+    "classNum": 1205,
+    "name": "변찬우",
+    "like": 34,
+    "toggle": false
+  }
+]
