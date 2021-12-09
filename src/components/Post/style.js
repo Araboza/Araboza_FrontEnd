@@ -14,6 +14,11 @@ export const PostWrapper = styled.div`
     width: 100%;
   }
 
+  .title {
+    text-align: center;
+    margin: 5px 0;
+  }
+
   .description {
     display: flex;
     justify-content: space-around;

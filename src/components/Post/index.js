@@ -18,6 +18,9 @@ export default function Post({ data }) {
   return (
     <S.PostWrapper>
       <img src={data.img} alt="postImage" />
+      <h3 className="title">
+        {data.title.length > 15 ? `${data.title.slice(0, 15)}...` : data.title}
+      </h3>
       <div className="description">
         <div>
           <span>{data.classNum}</span>
