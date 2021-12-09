@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import * as S from "./style";
 
 export default function Post({ data }) {
   const [like, setLike] = useState(data.toggle);
@@ -15,7 +16,7 @@ export default function Post({ data }) {
   };
 
   return (
-    <article className="post" key={data.id}>
+    <S.PostWrapper>
       <img src={data.img} alt="postImage" />
       <div className="description">
         <div>
@@ -27,6 +28,6 @@ export default function Post({ data }) {
           {like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </div>
       </div>
-    </article>
+    </S.PostWrapper>
   );
 }

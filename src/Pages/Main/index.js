@@ -7,7 +7,7 @@ export default function Main() {
   return (
     <S.MainWrapper>
       {data.map((data) => (
-        <Post data={data} />
+        <Post data={data} key={data.id} />
       ))}
     </S.MainWrapper>
   );
