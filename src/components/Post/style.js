@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const PostWrapper = styled.div`
   padding: 10px;
   transition: all 0.2s;
+  border-radius: 5px;
   cursor: pointer;
 
   &:hover {
@@ -25,6 +26,10 @@ export const PostWrapper = styled.div`
 
     span {
       padding: 0 1px;
+    }
+
+    .user span {
+      font-size: 0.8rem;
     }
 
     .likes {
