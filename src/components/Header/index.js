@@ -2,31 +2,31 @@ import React from "react";
 import * as S from "./style";
 import * as I from "../../Asset/SVG";
 import HomeIcon from "@mui/icons-material/Home";
-import PersonIcon from "@mui/icons-material/Person";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AddIcon from "@mui/icons-material/Add";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
     <S.HeaderWrapper>
       <div className="space"></div>
-      <div className="logo">
+      <Link to="/" className="logo">
         <I.LogoSVG />
-      </div>
+      </Link>
       <div className="menu">
         <div className="icons">
-          <div>
+          <Link to="/">
             <HomeIcon />
-          </div>
-          <div>
+          </Link>
+          <Link to="/add">
             <AddIcon />
-          </div>
+          </Link>
           <div>
             <NotificationsNoneIcon />
           </div>
-          <div>
-            <PersonIcon />
-          </div>
+          <Link to="/my">
+            <S.UserImg image="./Teemo.jpg"></S.UserImg>
+          </Link>
         </div>
       </div>
     </S.HeaderWrapper>
