@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import * as I from "../../Asset/SVG";
 import HomeIcon from "@mui/icons-material/Home";
@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 import Notification from "../Notification";
 
 export default function Header() {
-  const onClick = () => {};
+  const [show, setShow] = useState(false);
+  const onClick = () => setShow(!show);
   return (
     <S.HeaderWrapper>
       <div className="space"></div>
@@ -27,7 +28,7 @@ export default function Header() {
             <div className="icon" onClick={onClick}>
               <NotificationsNoneIcon />
             </div>
-            <Notification />
+            {show && <Notification />}
           </div>
           <Link className="icon" to="/my">
             <S.UserImg image="./Teemo.jpg" />
