@@ -20,8 +20,7 @@ export const HeaderWrapper = styled.header`
     .icons {
       display: flex;
 
-      & > div,
-      a {
+      .icon {
         width: 50px;
         height: 50px;
         display: flex;
@@ -31,13 +30,25 @@ export const HeaderWrapper = styled.header`
         margin: 0 10px;
         color: #000000;
         transition: 0.2s;
+        cursor: pointer;
 
         &:hover {
           background-color: #dbd5d5ff;
         }
+      }
+      .notification {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        margin: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        svg {
-          cursor: pointer;
+        .icon {
+          width: 100%;
+          height: 100%;
+          margin: 0;
         }
       }
     }
