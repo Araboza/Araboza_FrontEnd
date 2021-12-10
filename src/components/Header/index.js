@@ -5,8 +5,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
+import Notification from "../Notification";
 
 export default function Header() {
+  const onClick = () => {};
   return (
     <S.HeaderWrapper>
       <div className="space"></div>
@@ -15,17 +17,20 @@ export default function Header() {
       </Link>
       <div className="menu">
         <div className="icons">
-          <Link to="/">
+          <Link className="icon" to="/">
             <HomeIcon />
           </Link>
-          <Link to="/add">
+          <Link className="icon" to="/add">
             <AddIcon />
           </Link>
-          <div>
-            <NotificationsNoneIcon />
+          <div className="notification">
+            <div className="icon" onClick={onClick}>
+              <NotificationsNoneIcon />
+            </div>
+            <Notification />
           </div>
-          <Link to="/my">
-            <S.UserImg image="./Teemo.jpg"></S.UserImg>
+          <Link className="icon" to="/my">
+            <S.UserImg image="./Teemo.jpg" />
           </Link>
         </div>
       </div>
