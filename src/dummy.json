@@ -13,7 +13,7 @@
     "title": "RN이 최고다",
     "img": "./Teemo.jpg",
     "classNum": 1205,
-    "name": "변찬우",
+    "name": "최형우",
     "like": 34,
     "toggle": true
   },
@@ -22,7 +22,7 @@
     "title": "티모가 귀여운 포트폴리오",
     "img": "./Teemo.jpg",
     "classNum": 1205,
-    "name": "변찬우",
+    "name": "노가성",
     "like": 34,
     "toggle": false
   },
@@ -31,7 +31,7 @@
     "title": "알아보자",
     "img": "./Teemo.jpg",
     "classNum": 1205,
-    "name": "변찬우",
+    "name": "김현승",
     "like": 34,
     "toggle": true
   },
@@ -46,12 +46,12 @@
   },
   {
     "id": 6,
-    "title": "얼마나 많은 밤을 지새워야 어른이 될까?",
+    "title": "I love Teemo",
     "img": "./Teemo.jpg",
     "classNum": 1205,
-    "name": "변찬우",
+    "name": "김시훈",
     "like": 34,
-    "toggle": false
+    "toggle": true
   },
   {
     "id": 7,
