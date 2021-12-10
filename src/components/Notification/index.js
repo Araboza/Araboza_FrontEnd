@@ -16,27 +16,30 @@ export default function Notification() {
       <div className="notice">
         <h5>title</h5>
         <p>description</p>
-        {/* <img src="/Teemo.jpg" alt="post_image" /> */}
+        <div>
+          <img src="/Teemo.jpg" alt="post_image" />
+        </div>
       </div>
       <div className="notice">
         <h5>title</h5>
         <p>description</p>
-        {/* <img src="/Teemo.jpg" alt="post_image" /> */}
+        <div>
+          <img src="/Teemo.jpg" alt="post_image" />
+        </div>
       </div>
       <div className="notice">
         <h5>title</h5>
         <p>description</p>
-        {/* <img src="/Teemo.jpg" alt="post_image" /> */}
+        <div>
+          <img src="/Teemo.jpg" alt="post_image" />
+        </div>
       </div>
       <div className="notice">
         <h5>title</h5>
         <p>description</p>
-        {/* <img src="/Teemo.jpg" alt="post_image" /> */}
-      </div>
-      <div className="notice">
-        <h5>title</h5>
-        <p>description</p>
-        {/* <img src="/Teemo.jpg" alt="post_image" /> */}
+        <div>
+          <img src="/Teemo.jpg" alt="post_image" />
+        </div>
       </div>
     </S.NotificationWrapper>
   );
