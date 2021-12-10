@@ -8,10 +8,11 @@ import { getPost } from "./modules/posts";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import data from "./dummy.json";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const store = createStore(reducer);
+const store = createStore(reducer, composeWithDevTools());
 
-store.dispatch(getPost(data));
+store.dispatch(getPost({ data }));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -18,10 +18,14 @@ const initialState = [];
 function posts(state = initialState, action) {
   switch (action.type) {
     case GET_POST:
-      return state.concat(action.data);
+      return produce(state, (draft) => {
+        draft.push(...action.data);
+      });
     case TOGGLE:
       return produce(state, (draft) => {
-        draft[action.id].toggle = !draft[action.id].toggle;
+        const id = draft.findIndex((i) => i.id === action.id);
+        draft[id].toggle ? (draft[id].like -= 1) : (draft[id].like += 1);
+        draft[id].toggle = !draft[id].toggle;
       });
     default:
       return state;
