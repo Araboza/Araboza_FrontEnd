@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const LoginWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   height: 100vh;
 
@@ -10,16 +10,22 @@ export const LoginWrapper = styled.div`
     display: flex;
     flex-direction: column;
 
+    & > div {
+      margin: 0 auto;
+    }
+
     h1 {
       padding: 20px 0;
       font-size: 2.3rem;
     }
+
     p {
       font-size: 1.3rem;
       margin-bottom: 40px;
     }
+
     button {
-      width: 50%;
+      width: 70%;
       background: #000000;
       border: none;
       outline: none;
@@ -43,5 +49,15 @@ export const LoginWrapper = styled.div`
         align-center: center;
       }
     }
+  }
+
+  .right {
+    grid-column: 2 / -1;
+    background: url(/PNG/LoginImg.png);
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 `;
