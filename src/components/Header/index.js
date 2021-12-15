@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./style";
 import * as I from "../../Asset/SVG";
 import HomeIcon from "@mui/icons-material/Home";
@@ -6,10 +6,14 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import Notification from "../Notification";
+import { useDispatch, useSelector } from "react-redux";
+import { set_show } from "../../modules/notice";
 
 export default function Header() {
-  const [show, setShow] = useState(false);
-  const onClick = () => setShow(!show);
+  const dispatch = useDispatch();
+  const show = useSelector((state) => state.notice.show);
+  const show_notice = () => dispatch(set_show());
+
   return (
     <S.HeaderWrapper>
       <div className="space"></div>
@@ -25,14 +29,14 @@ export default function Header() {
             <AddIcon />
           </Link>
           <div className="notification">
-            <div className="icon" onClick={onClick}>
+            <div className="icon" onClick={show_notice}>
               <NotificationsNoneIcon />
             </div>
             {show && <Notification />}
           </div>
-          <Link className="icon" to="/my">
+          <div className="icon">
             <S.UserImg image="./Teemo.jpg" />
-          </Link>
+          </div>
         </div>
       </div>
     </S.HeaderWrapper>
