@@ -5,11 +5,12 @@ export const NotificationWrapper = styled.div`
   position: absolute;
   top: 100%;
   left: 0;
-  transform: translateX(-50%);
+  transform: translateX(-80%);
   background: #ffffff;
   padding: 5px;
   z-index: 100;
   max-width: 300px;
+  border: 1px solid #e5e5e5;
 
   hr {
     border: 1px solid #000000;

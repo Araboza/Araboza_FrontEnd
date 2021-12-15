@@ -12,7 +12,8 @@ import { set_show } from "../../modules/notice";
 export default function Header() {
   const dispatch = useDispatch();
   const show = useSelector((state) => state.notice.show);
-  const onClick = () => dispatch(set_show());
+  const show_notice = () => dispatch(set_show());
+
   return (
     <S.HeaderWrapper>
       <div className="space"></div>
@@ -28,14 +29,14 @@ export default function Header() {
             <AddIcon />
           </Link>
           <div className="notification">
-            <div className="icon" onClick={onClick}>
+            <div className="icon" onClick={show_notice}>
               <NotificationsNoneIcon />
             </div>
             {show && <Notification />}
           </div>
-          <Link className="icon" to="/my">
+          <div className="icon">
             <S.UserImg image="./Teemo.jpg" />
-          </Link>
+          </div>
         </div>
       </div>
     </S.HeaderWrapper>
