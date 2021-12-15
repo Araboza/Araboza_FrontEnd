@@ -35,7 +35,7 @@ function posts(state = initialState, action) {
       return state;
     case TOGGLE:
       return produce(state, (draft) => {
-        const id = draft.findIndex((i) => i.id === action.id);
+        const id = draft.data.findIndex((i) => i.id === action.id);
         draft.data[id].toggle
           ? (draft.data[id].like -= 1)
           : (draft.data[id].like += 1);
