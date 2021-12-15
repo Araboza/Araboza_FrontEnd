@@ -4,6 +4,7 @@ import data from "../dummy.json";
 const SET_POST = "posts/SET_POST";
 const GET_POST = "posts/GET_POST";
 const TOGGLE = "posts/TOGGLE";
+const ERROR = "posts/ERROR";
 
 export const setPost = () => ({ type: SET_POST });
 
@@ -17,8 +18,13 @@ export const toggle = ({ id }) => ({
   id,
 });
 
+export const error = (error) => ({
+  type: ERROR,
+  error,
+});
+
 // const initialState = [];
-const initialState = data;
+const initialState = { data, error: "" };
 
 function posts(state = initialState, action) {
   switch (action.type) {
@@ -31,8 +37,15 @@ function posts(state = initialState, action) {
     case TOGGLE:
       return produce(state, (draft) => {
         const id = draft.findIndex((i) => i.id === action.id);
-        draft[id].toggle ? (draft[id].like -= 1) : (draft[id].like += 1);
-        draft[id].toggle = !draft[id].toggle;
+        draft.data[id].toggle
+          ? (draft.data[id].like -= 1)
+          : (draft.data[id].like += 1);
+        draft.data[id].toggle = !draft.data[id].toggle;
+      });
+
+    case ERROR:
+      return produce(state, (draft) => {
+        draft.error = action.error;
       });
     default:
       return state;
