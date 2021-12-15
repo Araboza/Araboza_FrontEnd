@@ -5,7 +5,15 @@ import Header from "../../components/Header";
 import { useSelector } from "react-redux";
 
 export default function Main() {
-  const { posts } = useSelector(({ posts }) => ({ posts }));
+  const { posts, error } = useSelector(({ posts }) => ({
+    posts: posts.data,
+    error: posts.error,
+  }));
+
+  if (error) {
+    return <h1>데이터를 불러올 수 없습니다</h1>;
+  }
+
   return (
     <>
       <Header />
