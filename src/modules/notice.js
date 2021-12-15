@@ -25,9 +25,11 @@ function notice(state = initialState, action) {
       if (!state.show) {
         body.style.position = "fixed";
         body.style.touchAction = "none";
+        body.style.overflowY = "scroll";
       } else {
         body.style.position = "static";
         body.style.touchAction = "auto";
+        body.style.overflowY = "visible";
       }
       return produce(state, (draft) => {
         draft.show = !draft.show;
