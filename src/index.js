@@ -4,15 +4,23 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import reducer from "./modules";
-import { getPost } from "./modules/posts";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import data from "./dummy.json";
+import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import rootSaga from "./lib";
+import createSagaMiddleware from "redux-saga";
+import { setPost } from "./modules/posts";
 
-const store = createStore(reducer, composeWithDevTools());
+const sagaMiddleware = createSagaMiddleware();
 
-store.dispatch(getPost({ data }));
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
+
+sagaMiddleware.run(rootSaga);
+
+store.dispatch(setPost());
 
 ReactDOM.render(
   <Provider store={store}>
