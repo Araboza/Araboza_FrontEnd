@@ -13,13 +13,12 @@ export const error = (error) => ({ type: ERROR, error });
 const initialState = {
   notice: [],
   show: false,
-  error: "",
+  error: null,
 };
 
 function notice(state = initialState, action) {
   switch (action.type) {
     case GET_NOTICE:
-      console.log(action.notice);
       return produce(state, (draft) => {
         draft.notice.push(...action.notice);
       });

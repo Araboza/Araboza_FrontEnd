@@ -23,8 +23,7 @@ export const error = (error) => ({
   error,
 });
 
-// const initialState = [];
-const initialState = { data, error: "" };
+const initialState = { data, error: null };
 
 function posts(state = initialState, action) {
   switch (action.type) {

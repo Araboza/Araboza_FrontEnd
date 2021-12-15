@@ -5,11 +5,11 @@ import getNotice from "./api/getNotice";
 const SET_NOTICE = "notice/SET_NOTICE";
 
 function* setNotice(action) {
-  try {
-    const res = yield call(getNotice, action.userId);
+  const res = yield call(getNotice, action.userId);
+  if (!res.error) {
     yield put(get_notice(res));
-  } catch (e) {
-    yield put(error(e));
+  } else {
+    yield put(error(res.error));
   }
 }
 

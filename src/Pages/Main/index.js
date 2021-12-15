@@ -11,7 +11,7 @@ export default function Main() {
   }));
 
   if (error) {
-    return <h1>데이터를 불러올 수 없습니다</h1>;
+    return <h1>{error.message}</h1>;
   }
 
   return (
