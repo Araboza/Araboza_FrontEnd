@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./style";
 import * as I from "../../Asset/SVG";
 import HomeIcon from "@mui/icons-material/Home";
@@ -6,10 +6,13 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import Notification from "../Notification";
+import { useDispatch, useSelector } from "react-redux";
+import { set_show } from "../../modules/notice";
 
 export default function Header() {
-  const [show, setShow] = useState(false);
-  const onClick = () => setShow(!show);
+  const dispatch = useDispatch();
+  const show = useSelector((state) => state.notice.show);
+  const onClick = () => dispatch(set_show());
   return (
     <S.HeaderWrapper>
       <div className="space"></div>

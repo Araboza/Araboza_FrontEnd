@@ -5,6 +5,7 @@ export const HeaderWrapper = styled.header`
   grid-template-columns: 1fr 1fr 1fr;
   height: 10vh;
   margin-bottom: 50px;
+  z-index: 60;
 
   .logo {
     display: flex;
