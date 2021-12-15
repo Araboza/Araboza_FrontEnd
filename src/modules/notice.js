@@ -19,9 +19,10 @@ const initialState = {
 function notice(state = initialState, action) {
   switch (action.type) {
     case GET_NOTICE:
-      return produce(state, (draft) => {
-        draft.notice.push(...action.notice);
-      });
+      // return produce(state, (draft) => {
+      //   draft.notice.push(...action.notice);
+      // });
+      return state;
 
     case SET_SHOW:
       const body = document.querySelector("body");
