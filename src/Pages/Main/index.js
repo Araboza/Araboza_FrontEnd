@@ -10,7 +10,7 @@ export default function Main() {
     error: posts.error,
   }));
 
-  if (error) {
+  if (error && !posts) {
     return <h1>{error.message}</h1>;
   }
 
