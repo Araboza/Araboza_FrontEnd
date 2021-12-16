@@ -8,16 +8,23 @@ import { Link } from "react-router-dom";
 import Notification from "../Notification";
 import { useDispatch, useSelector } from "react-redux";
 import { set_notice, set_show } from "../../modules/notice";
+import { show_user, set_user } from "../../modules/myInfo";
 import MyInfoPopup from "../MyInfoPopup";
 
 export default function Header() {
   const dispatch = useDispatch();
-  const show = useSelector((state) => state.notice.show);
-  const newNotice = () => {
-    // setNotice action이 먼저 실행되어서 flase일 때
-    if (!show) dispatch(set_notice(1));
+  const [noticeShow, userShow] = useSelector((state) => [
+    state.notice.show,
+    state.myInfo.show,
+  ]);
+  const show_notice = () => {
+    dispatch(set_show());
+    if (!noticeShow) dispatch(set_notice(1));
   };
-  const show_notice = () => dispatch(set_show());
+  const user_show = () => {
+    dispatch(show_user());
+    if (!userShow) dispatch(set_user());
+  };
 
   return (
     <S.HeaderWrapper>
@@ -35,13 +42,13 @@ export default function Header() {
           </Link>
           <div className="notification">
             <div className="icon" onClick={show_notice}>
-              <NotificationsNoneIcon onClick={newNotice} />
+              <NotificationsNoneIcon />
             </div>
-            {show && <Notification />}
+            {noticeShow && <Notification />}
           </div>
           <div className="icon my">
-            <S.UserImg image="./Teemo.jpg" />
-            <MyInfoPopup />
+            <S.UserImg image="./Teemo.jpg" onClick={user_show} />
+            {userShow && <MyInfoPopup />}
           </div>
         </div>
       </div>

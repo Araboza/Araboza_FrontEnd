@@ -2,16 +2,25 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { set_show } from "./modules/notice";
+import { show_user } from "./modules/myInfo";
 import * as P from "./Pages";
 
 function App() {
-  const show = useSelector((state) => state.notice.show);
+  const [noticeShow, userShow] = useSelector((state) => [
+    state.notice.show,
+    state.myInfo.show,
+  ]);
   const dispatch = useDispatch();
-  const onClick = () => dispatch(set_show());
+  const onClick = () => {
+    if (noticeShow) dispatch(set_show());
+    if (userShow) dispatch(show_user());
+  };
 
   return (
     <>
-      {show && <div onClick={onClick} className="notice-close"></div>}
+      {(noticeShow || userShow) && (
+        <div onClick={onClick} className="notice-close"></div>
+      )}
       <Routes>
         <Route path="/" element={<P.Main />} />
         <Route path="/login" element={<P.Login />} />
