@@ -3,20 +3,21 @@ import * as S from "./style";
 import * as I from "../../Asset/SVG";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import AddIcon from "@mui/icons-material/Add";
+import UploadIcon from "@mui/icons-material/Upload";
 import { Link } from "react-router-dom";
 import Notification from "../Notification";
 import { useDispatch, useSelector } from "react-redux";
 import { set_notice, set_show } from "../../modules/notice";
+import MyInfoPopup from "../MyInfoPopup";
 
 export default function Header() {
   const dispatch = useDispatch();
   const show = useSelector((state) => state.notice.show);
-  const show_notice = () => dispatch(set_show());
   const newNotice = () => {
     // setNotice action이 먼저 실행되어서 flase일 때
     if (!show) dispatch(set_notice(1));
   };
+  const show_notice = () => dispatch(set_show());
 
   return (
     <S.HeaderWrapper>
@@ -30,7 +31,7 @@ export default function Header() {
             <HomeIcon />
           </Link>
           <Link className="icon" to="/add">
-            <AddIcon />
+            <UploadIcon />
           </Link>
           <div className="notification">
             <div className="icon" onClick={show_notice}>
@@ -38,8 +39,9 @@ export default function Header() {
             </div>
             {show && <Notification />}
           </div>
-          <div className="icon">
+          <div className="icon my">
             <S.UserImg image="./Teemo.jpg" />
+            <MyInfoPopup />
           </div>
         </div>
       </div>

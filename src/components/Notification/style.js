@@ -29,7 +29,7 @@ export const NotificationWrapper = styled.div`
       grid-column: 2/3;
       display: flex;
       justify-content: center;
-      align-item: center;
+      align-items: center;
     }
     img {
       width: 50%;

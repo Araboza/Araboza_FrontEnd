@@ -51,6 +51,10 @@ export const HeaderWrapper = styled.header`
           margin: 0;
         }
       }
+
+      .my {
+        position: relative;
+      }
     }
   }
 `;
