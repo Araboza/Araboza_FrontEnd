@@ -6,9 +6,10 @@ import { show_user } from "./modules/myInfo";
 import * as P from "./Pages";
 
 function App() {
-  const [noticeShow, userShow] = useSelector((state) => [
+  const [noticeShow, userShow, cookie] = useSelector((state) => [
     state.notice.show,
     state.myInfo.show,
+    state.user.cookie,
   ]);
   const dispatch = useDispatch();
   const onClick = () => {
@@ -16,16 +17,23 @@ function App() {
     if (userShow) dispatch(show_user());
   };
 
+  if (cookie) {
+    return (
+      <>
+        {(noticeShow || userShow) && (
+          <div onClick={onClick} className="notice-close" />
+        )}
+        <Routes>
+          <Route path="/" element={<P.Main />} />
+        </Routes>
+      </>
+    );
+  }
+
   return (
-    <>
-      {(noticeShow || userShow) && (
-        <div onClick={onClick} className="notice-close"></div>
-      )}
-      <Routes>
-        <Route path="/" element={<P.Main />} />
-        <Route path="/login" element={<P.Login />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/*" element={<P.Login />} />
+    </Routes>
   );
 }
 

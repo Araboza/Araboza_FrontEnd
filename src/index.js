@@ -10,6 +10,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import rootSaga from "./lib";
 import createSagaMiddleware from "redux-saga";
 import { setPost } from "./modules/posts";
+import { getUser } from "./modules/user";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,7 +21,9 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-store.dispatch(setPost());
+store.dispatch(getUser());
+
+if (store.getState().user) store.dispatch(setPost());
 
 ReactDOM.render(
   <Provider store={store}>
