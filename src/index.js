@@ -12,6 +12,9 @@ import createSagaMiddleware from "redux-saga";
 import { setPost } from "./modules/posts";
 import { getUser } from "./modules/user";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
