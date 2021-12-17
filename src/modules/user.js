@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 const GET_USER = "user/GET_USER";
 const REAMOVE_USER = "user/REAMOVE_USER";
 

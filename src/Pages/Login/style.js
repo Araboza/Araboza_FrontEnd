@@ -46,7 +46,7 @@ export const LoginWrapper = styled.div`
         padding: 5px;
         display: flex;
         justify-content: center;
-        align-center: center;
+        align-items: center;
       }
     }
   }
