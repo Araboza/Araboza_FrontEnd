@@ -1,6 +1,6 @@
-import { GetPosts } from "./api/getPosts";
+import { GetPosts } from "../api/getPosts";
 import { call, put, takeLatest } from "redux-saga/effects";
-import { error, getPost } from "../modules/posts";
+import { error, getPost } from "../../modules/posts";
 
 const SET_POST = "posts/SET_POST";
 
