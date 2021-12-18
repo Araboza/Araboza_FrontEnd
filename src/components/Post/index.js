@@ -14,7 +14,7 @@ export default function Post({ data }) {
 
   return (
     <S.PostWrapper>
-      <Link to={`/@${data.name}`}>
+      <Link to={`/@${data.name}/${data.title}`}>
         <img src={data.img} alt="postImage" />
         <h3 className="title">
           {data.title.length > 15
