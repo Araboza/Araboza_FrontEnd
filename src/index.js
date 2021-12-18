@@ -7,7 +7,7 @@ import reducer from "./modules";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import rootSaga from "./lib";
+import rootSaga from "./lib/saga";
 import createSagaMiddleware from "redux-saga";
 import { setPost } from "./modules/posts";
 import { getUser } from "./modules/user";

@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { error, get_user } from "../modules/myInfo";
-import { GetUser } from "./api/getUser";
+import { error, get_user } from "../../modules/myInfo";
+import { GetUser } from "../api/getUser";
 
 const SET_USER = "myInfo/SET_USER";
 

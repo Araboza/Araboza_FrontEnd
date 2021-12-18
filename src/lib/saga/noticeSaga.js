@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { get_notice, error } from "../modules/notice";
-import getNotice from "./api/getNotice";
+import { get_notice, error } from "../../modules/notice";
+import getNotice from "../api/getNotice";
 
 const SET_NOTICE = "notice/SET_NOTICE";
 
