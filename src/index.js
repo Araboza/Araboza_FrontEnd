@@ -26,7 +26,7 @@ sagaMiddleware.run(rootSaga);
 
 store.dispatch(getUser());
 
-if (store.getState().user) store.dispatch(setPost());
+if (store.getState().user.cookie) store.dispatch(setPost());
 
 ReactDOM.render(
   <Provider store={store}>
