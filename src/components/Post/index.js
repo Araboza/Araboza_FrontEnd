@@ -27,8 +27,7 @@ export default function Post({ data }) {
           <span>{data.classNum}</span>
           <span>{data.name}</span>
         </div>
-        <div onClick={onClick} className="likes">
-          <span>{data.like}</span>
+        <div onClick={onClick}>
           {data.toggle ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </div>
       </div>

@@ -32,21 +32,11 @@ export const PostWrapper = styled.div`
       font-size: 0.8rem;
     }
 
-    .likes {
-      display: flex;
-      align-items: center;
-
-      span {
-        margin-right: 4px;
-        font-weight: bold;
-      }
-
-      svg {
-        color: red;
-        transition: 0.3s;
-        &:hover {
-          transform: scale(1.2);
-        }
+    svg {
+      color: red;
+      transition: 0.3s;
+      &:hover {
+        transform: scale(1.2);
       }
     }
   }
