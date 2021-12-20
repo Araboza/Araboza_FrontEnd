@@ -1,4 +1,4 @@
-import { getRefresh } from "../lib/cookie/refresh";
+import { getRefresh } from "../lib/cookie/token";
 
 const GET_USER = "user/GET_USER";
 const LOGOUT_USER = "user/LOGOUT_USER";
