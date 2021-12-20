@@ -16,6 +16,9 @@ export const MyWrapper = styled.div`
       justify-content: center;
       .major {
         margin: 10px 0;
+        span {
+          margin-right: 7px;
+        }
       }
     }
     .edit {
@@ -38,6 +41,11 @@ export const MyWrapper = styled.div`
         }
       }
     }
+  }
+
+  .portfolios {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 

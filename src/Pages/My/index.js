@@ -1,13 +1,21 @@
 import React from "react";
 import Header from "../../components/Header";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as S from "./style";
+import Post from "../../components/Post";
+import { set_like } from "../../modules/myInfo";
 
 export default function My() {
-  const { user } = useSelector((state) => ({
+  const dispatch = useDispatch();
+  const { user, posts } = useSelector((state) => ({
     user: state.myInfo.user,
+    posts: state.myInfo.posts,
   }));
-  console.log(user);
+
+  const onLike = (data) => {
+    dispatch(set_like(data));
+  };
+
   return (
     <>
       <Header />
@@ -27,7 +35,11 @@ export default function My() {
             <button>편집</button>
           </div>
         </div>
-        <div className="portfolios"></div>
+        <div className="portfolios">
+          {posts.map((data) => (
+            <Post data={data} like={onLike} key={data.id} />
+          ))}
+        </div>
       </S.MyWrapper>
     </>
   );

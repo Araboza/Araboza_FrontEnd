@@ -3,15 +3,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
 import * as S from "./style";
-import { useDispatch } from "react-redux";
-import { toggle } from "../../modules/posts";
 
-export default function Post({ data }) {
-  const dispatch = useDispatch();
-  const onClick = () => {
-    dispatch(toggle({ id: data.id }));
-  };
-
+export default function Post({ data, like }) {
   return (
     <S.PostWrapper>
       <Link to={`/@${data.name}/${data.title}`}>
@@ -27,7 +20,7 @@ export default function Post({ data }) {
           <span>{data.classNum}</span>
           <span>{data.name}</span>
         </div>
-        <div onClick={onClick}>
+        <div onClick={() => like(data)}>
           {data.toggle ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </div>
       </div>
