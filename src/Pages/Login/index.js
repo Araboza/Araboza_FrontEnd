@@ -7,7 +7,7 @@ import GoogleLogin from "react-google-login";
 export default function Login() {
   const responseGoogle = (res) => {
     console.log(res);
-    // PostToken(res.tokenId);
+    console.log(res.tokenId);
   };
 
   return (

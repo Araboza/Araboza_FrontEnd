@@ -25,6 +25,8 @@ function App() {
         )}
         <Routes>
           <Route path="/" element={<P.Main />} />
+          <Route path="/add" element={<P.Add />} />
+          <Route path="/@:user/:post" element={<P.Portfolio />} />
         </Routes>
       </>
     );
