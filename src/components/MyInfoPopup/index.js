@@ -6,6 +6,7 @@ import UploadIcon from "@mui/icons-material/Upload";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function MyInfoPopup() {
   const dispatch = useDispatch();
@@ -25,7 +26,9 @@ export default function MyInfoPopup() {
       <div className="navigation">
         <section>
           <AccountCircleIcon />
-          <span>내 정보</span>
+          <span>
+            <Link to="my">내 정보</Link>
+          </span>
         </section>
         <section>
           <UploadIcon />

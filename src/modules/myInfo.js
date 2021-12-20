@@ -11,7 +11,12 @@ export const error = (error) => ({ type: ERROR, error });
 export const show_user = () => ({ type: SHOW });
 
 const initialState = {
-  user: { img: "", username: "", major: "" },
+  user: {
+    img: "./Teemo.jpg",
+    username: "Teemo",
+    major: ["FrontEnd", "BackEnd", "AWS"],
+    description: "프론트를 좋아합니다.",
+  },
   show: false,
   error: null,
 };
@@ -20,7 +25,7 @@ function myInfo(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
       return produce(state, (draft) => {
-        draft.user = action.user;
+        // draft.user = action.user;
       });
     case SHOW:
       return produce(state, (draft) => {
