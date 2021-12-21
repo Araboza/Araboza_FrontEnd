@@ -31,13 +31,5 @@ export const PostWrapper = styled.div`
     .user span {
       font-size: 0.8rem;
     }
-
-    svg {
-      color: red;
-      transition: 0.3s;
-      &:hover {
-        transform: scale(1.2);
-      }
-    }
   }
 `;

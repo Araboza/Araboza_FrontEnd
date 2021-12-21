@@ -15,7 +15,7 @@ export default function MyInfoPopup() {
   return (
     <S.PopupWrapper>
       <div className="user">
-        <div className="userImg"></div>
+        <S.UserImg image={"/Teemo.jpg"} />
         <div>
           <div className="username">Teemo</div>
           <div className="major">#FrontEnd</div>
