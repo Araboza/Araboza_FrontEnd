@@ -23,7 +23,7 @@ export default function Main() {
       <Header />
       <S.MainWrapper>
         {posts.map((data) => (
-          <Post data={data} onLike={onLike} key={data.id} />
+          <Post data={data} onLike={() => onLike(data)} key={data.id} />
         ))}
       </S.MainWrapper>
     </>

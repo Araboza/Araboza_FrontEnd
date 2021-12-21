@@ -1,6 +1,5 @@
 import React from "react";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import Heart from "../Heart";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 
@@ -20,9 +19,7 @@ export default function Post({ data, onLike }) {
           <span>{data.classNum}</span>
           <span>{data.name}</span>
         </div>
-        <div onClick={() => onLike(data)}>
-          {data.toggle ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-        </div>
+        <Heart toggle={data.toggle} onLike={onLike} />
       </div>
     </S.PostWrapper>
   );

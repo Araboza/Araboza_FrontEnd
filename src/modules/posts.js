@@ -35,12 +35,13 @@ function posts(state = initialState, action) {
         const { id } = action.data;
         const index = draft.posts.findIndex((i) => i.id === id);
 
-        draft.posts[index].toggle
-          ? draft.posts[index].like++
-          : draft.posts[index].like--;
+        if (index !== -1) {
+          draft.posts[index].toggle
+            ? draft.posts[index].like++
+            : draft.posts[index].like--;
 
-        if (index !== -1)
           draft.posts[index].toggle = !draft.posts[index].toggle;
+        }
       });
 
     case ERROR:
