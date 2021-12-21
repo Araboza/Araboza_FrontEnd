@@ -13,6 +13,9 @@ export const PortfolioWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
     padding: 20px;
+    background: #eaeaea;
+    border-radius: 10px;
+    margin: 30px 0;
 
     .info {
       display: flex;
