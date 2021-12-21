@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import { useSelector, useDispatch } from "react-redux";
 import * as S from "./style";
 import Post from "../../components/Post";
-import { set_like } from "../../modules/myInfo";
+import { set_like, set_user } from "../../modules/myInfo";
 
 export default function My() {
   const dispatch = useDispatch();
@@ -11,6 +11,8 @@ export default function My() {
     user: state.myInfo.user,
     posts: state.myInfo.posts,
   }));
+
+  dispatch(set_user());
 
   const onLike = (data) => {
     dispatch(set_like(data));
@@ -37,7 +39,7 @@ export default function My() {
         </div>
         <div className="portfolios">
           {posts.map((data) => (
-            <Post data={data} like={onLike} key={data.id} />
+            <Post data={data} onLike={onLike} key={data.id} />
           ))}
         </div>
       </S.MyWrapper>

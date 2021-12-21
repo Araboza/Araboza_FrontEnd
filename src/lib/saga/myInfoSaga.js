@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
-import { error, get_user, get_my_posts, get_Like } from "../../modules/myInfo";
-import { GetLike } from "../api/getLike";
+import { error, get_user, get_my_posts } from "../../modules/myInfo";
+// import { GetLike } from "../api/getLike";
 import { GetMyPosts } from "../api/getMyPosts";
 import { GetUser } from "../api/getUser";
 
@@ -29,14 +29,13 @@ function* setPosts() {
 function* setLike(action) {
   try {
     // yield call(GetLike, action);
-    yield put(get_Like(action.data));
   } catch (e) {
     yield put(error(e));
   }
 }
 
 export default function* myInfoSaga() {
+  yield takeEvery(SET_LIKE, setLike);
   yield takeLatest(SET_USER, setUser);
   yield takeLatest(SET_MY_POSTS, setPosts);
-  yield takeEvery(SET_LIKE, setLike);
 }

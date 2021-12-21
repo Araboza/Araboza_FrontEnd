@@ -2,11 +2,13 @@ import React from "react";
 import * as S from "./style";
 import Post from "../../components/Post";
 import Header from "../../components/Header";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { set_like } from "../../modules/posts";
 
 export default function Main() {
+  const dispatch = useDispatch();
   const { posts, error } = useSelector(({ posts }) => ({
-    posts: posts.data,
+    posts: posts.posts,
     error: posts.error,
   }));
 
@@ -14,12 +16,14 @@ export default function Main() {
     return <h1>{error.message}</h1>;
   }
 
+  const onLike = (data) => dispatch(set_like(data));
+
   return (
     <>
       <Header />
       <S.MainWrapper>
         {posts.map((data) => (
-          <Post data={data} key={data.id} />
+          <Post data={data} onLike={onLike} key={data.id} />
         ))}
       </S.MainWrapper>
     </>

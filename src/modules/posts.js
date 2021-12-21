@@ -3,42 +3,44 @@ import data from "../dummy.json";
 
 const SET_POST = "posts/SET_POST";
 const GET_POST = "posts/GET_POST";
-const TOGGLE = "posts/TOGGLE";
+const SET_LIKE = "myInfo/SET_LIKE";
 const ERROR = "posts/ERROR";
 
 export const setPost = () => ({ type: SET_POST });
-
 export const getPost = (data) => ({
   type: GET_POST,
   data,
 });
-
-export const toggle = ({ id }) => ({
-  type: TOGGLE,
-  id,
+export const set_like = (data) => ({
+  type: SET_LIKE,
+  data,
 });
-
 export const error = (error) => ({
   type: ERROR,
   error,
 });
 
-const initialState = { data, error: null };
+const initialState = { posts: data, error: null };
 
 function posts(state = initialState, action) {
   switch (action.type) {
     case GET_POST:
       // return produce(state, (draft) => {
-      //   draft.push(...action.data);
+      //   draft.posts.push(...action.data);
       // });
       return state;
-    case TOGGLE:
+
+    case SET_LIKE:
       return produce(state, (draft) => {
-        const id = draft.data.findIndex((i) => i.id === action.id);
-        draft.data[id].toggle
-          ? (draft.data[id].like -= 1)
-          : (draft.data[id].like += 1);
-        draft.data[id].toggle = !draft.data[id].toggle;
+        const { id } = action.data;
+        const index = draft.posts.findIndex((i) => i.id === id);
+
+        draft.posts[index].toggle
+          ? draft.posts[index].like++
+          : draft.posts[index].like--;
+
+        if (index !== -1)
+          draft.posts[index].toggle = !draft.posts[index].toggle;
       });
 
     case ERROR:

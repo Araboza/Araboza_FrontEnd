@@ -4,7 +4,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 
-export default function Post({ data, like }) {
+export default function Post({ data, onLike }) {
   return (
     <S.PostWrapper>
       <Link to={`/@${data.name}/${data.title}`}>
@@ -20,7 +20,7 @@ export default function Post({ data, like }) {
           <span>{data.classNum}</span>
           <span>{data.name}</span>
         </div>
-        <div onClick={() => like(data)}>
+        <div onClick={() => onLike(data)}>
           {data.toggle ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </div>
       </div>

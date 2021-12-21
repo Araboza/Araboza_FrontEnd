@@ -7,7 +7,6 @@ const SET_MY_POSTS = "myInfo/SET_MY_POSTS";
 const ERROR = "myInfo/ERROR";
 const SHOW = "myInfo/SHOW";
 const SET_LIKE = "myInfo/SET_LIKE";
-const GET_LIKE = "myInfo/GET_LIKE";
 
 export const get_user = (user) => ({ type: GET_USER, user });
 export const set_user = () => ({ type: SET_USER });
@@ -17,10 +16,6 @@ export const error = (error) => ({ type: ERROR, error });
 export const show_user = () => ({ type: SHOW });
 export const set_like = (data) => ({
   type: SET_LIKE,
-  data,
-});
-export const get_Like = (data) => ({
-  type: GET_LIKE,
   data,
 });
 
@@ -91,7 +86,7 @@ function myInfo(state = initialState, action) {
       return produce(state, (draft) => {
         draft.error = action.error;
       });
-    case GET_LIKE:
+    case SET_LIKE:
       return produce(state, (draft) => {
         const { id } = action.data;
         const index = draft.posts.findIndex((i) => i.id === id);
