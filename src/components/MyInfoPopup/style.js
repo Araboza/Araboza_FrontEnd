@@ -15,16 +15,6 @@ export const PopupWrapper = styled.div`
     display: flex;
     justify-content: space-around;
 
-    .userImg {
-      width: 70px;
-      height: 70px;
-      border-radius: 100%;
-      background-image: url(./Teemo.jpg);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 150%;
-    }
-
     & > div {
       display: flex;
       flex-direction: column;
@@ -62,4 +52,14 @@ export const PopupWrapper = styled.div`
       background: #f4f4f4;
     }
   }
+`;
+
+export const UserImg = styled.div`
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  background-image: url(${(props) => props.image});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 150%;
 `;
