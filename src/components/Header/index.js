@@ -47,7 +47,7 @@ export default function Header() {
             {noticeShow && <Notification />}
           </div>
           <div className="icon my">
-            <S.UserImg image="./Teemo.jpg" onClick={user_show} />
+            <S.UserImg image="/Teemo.jpg" onClick={user_show} />
             {userShow && <MyInfoPopup />}
           </div>
         </div>
