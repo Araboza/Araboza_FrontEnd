@@ -15,10 +15,22 @@ export const AddWrapper = styled.div`
       display: none;
     }
 
-    span {
-      padding: 10px;
-      background: #e2e2e2;
-      border-radius: 10px;
+    label {
+      cursor: pointer;
+      .cover_img {
+        width: 80%;
+        margin: 0 auto;
+        height: 30vh;
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: center;
+      }
+
+      span {
+        padding: 10px;
+        background: #e2e2e2;
+        border-radius: 10px;
+      }
     }
   }
 

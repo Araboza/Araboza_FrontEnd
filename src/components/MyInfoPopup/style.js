@@ -44,7 +44,9 @@ export const PopupWrapper = styled.div`
     align-items: center;
     cursor: pointer;
 
-    span {
+    a {
+      width: 100%;
+      height: 100%;
       margin-left: 5px;
     }
 

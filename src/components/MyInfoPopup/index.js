@@ -26,17 +26,15 @@ export default function MyInfoPopup() {
       <div className="navigation">
         <section>
           <AccountCircleIcon />
-          <span>
-            <Link to="my">내 정보</Link>
-          </span>
+          <Link to="/my">내 정보</Link>
         </section>
         <section>
           <UploadIcon />
-          <span>업로드</span>
+          <Link to="/add">업로드</Link>
         </section>
         <section>
           <FavoriteBorderIcon />
-          <span>좋아요 한 프로젝트</span>
+          <Link to="/mylike">좋아요 한 프로젝트</Link>
         </section>
         <section onClick={logout} className="logout">
           <LogoutIcon />

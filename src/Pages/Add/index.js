@@ -41,10 +41,10 @@ const formats = [
 
 export default function Add() {
   const [value, setValue] = useState({
+    title: "",
     text: "",
     tagValue: "",
     img: null,
-    previewUrl: null,
   });
   const [tags, setTags] = useState([]);
 
@@ -69,23 +69,36 @@ export default function Add() {
     setTags(tags.filter((i) => i !== e.target.innerText));
   };
 
-  useEffect(() => {
+  const onImg = (e) => {
     const reader = new FileReader();
-
-    reader.onloadend = () => setValue({ ...value, previewUrl: reader.result });
-
-    if (value.img) reader.readAsDataURL(value.img);
-  }, [value.img]);
+    reader.onloadend = (finishedEvent) => {
+      console.log(finishedEvent);
+      setValue({ ...value, img: finishedEvent.currentTarget.result });
+    };
+    if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
+  };
 
   return (
     <>
       <Header />
       <S.AddWrapper>
-        <input type="text" placeholder="제목을 입력하세요" />
+        <input
+          value={value.title}
+          onChange={(e) => setValue({ ...value, title: e.target.value })}
+          type="text"
+          placeholder="제목을 입력하세요"
+        />
         <div className="uploadImg">
-          <input type="file" id="imgInput" />
+          <input type="file" onChange={onImg} id="imgInput" />
           <label htmlFor="imgInput">
-            <span>커버 이미지</span>
+            {value.img ? (
+              <div
+                style={{ backgroundImage: `url(${value.img})` }}
+                className="cover_img"
+              />
+            ) : (
+              <span>커버 이미지</span>
+            )}
           </label>
         </div>
         <ReactQuill
@@ -104,7 +117,7 @@ export default function Add() {
             <ul>
               {tags.map((i) => (
                 <li onClick={onClick} key={i}>
-                  {i}
+                  # {i}
                 </li>
               ))}
             </ul>
