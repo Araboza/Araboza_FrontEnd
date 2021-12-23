@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header";
 import ReactQuill, { Quill } from "react-quill";
 import MarkdownShortcuts from "quill-markdown-shortcuts";
@@ -72,7 +72,6 @@ export default function Add() {
   const onImg = (e) => {
     const reader = new FileReader();
     reader.onloadend = (finishedEvent) => {
-      console.log(finishedEvent);
       setValue({ ...value, img: finishedEvent.currentTarget.result });
     };
     if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
