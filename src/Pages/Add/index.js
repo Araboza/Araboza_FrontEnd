@@ -1,59 +1,26 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Editor from "../../components/Editor";
 import Header from "../../components/Header";
-import ReactQuill, { Quill } from "react-quill";
-import MarkdownShortcuts from "quill-markdown-shortcuts";
-
-import "react-quill/dist/quill.bubble.css";
+import { addPost } from "../../modules/posts";
 import * as S from "./style";
 
-Quill.register("modules/markdownShortcuts", MarkdownShortcuts);
-
-const modules = {
-  toolbar: [
-    //[{ 'font': [] }],
-    [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ list: "ordered" }, { list: "bullet" }],
-    ["link"],
-    [{ align: [] }, { color: [] }, { background: [] }], // dropdown with defaults from theme
-    ["clean"],
-  ],
-  markdownShortcuts: {},
-};
-
-const formats = [
-  //'font',
-  "header",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "align",
-  "color",
-  "background",
-];
-
 export default function Add() {
+  const { user, posts } = useSelector((state) => ({
+    user: state.myInfo.user,
+    posts: state.posts.posts,
+  }));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [value, setValue] = useState({
     title: "",
-    text: "",
+    context: "",
     tagValue: "",
     img: null,
   });
   const [tags, setTags] = useState([]);
-
-  const onChange = (mark) => {
-    setValue({
-      ...value,
-      text: mark,
-    });
-  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -75,6 +42,21 @@ export default function Add() {
       setValue({ ...value, img: finishedEvent.currentTarget.result });
     };
     if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const onUpload = (e) => {
+    e.preventDefault();
+    const { tagValue, ...data } = value;
+
+    if (!data.title || !data.context) {
+      alert("제목과 내용을 입력해 주세요");
+      return;
+    }
+
+    dispatch(
+      addPost({ ...data, tag: tags, name: user.username, id: posts.length + 1 })
+    );
+    navigate("/");
   };
 
   return (
@@ -100,17 +82,9 @@ export default function Add() {
             )}
           </label>
         </div>
-        <ReactQuill
-          style={{ height: "60vh" }}
-          placeholder="글을 작성하세요"
-          theme="bubble"
-          modules={modules}
-          formats={formats}
-          value={value.text || ""}
-          onChange={(content, delta, source, editor) =>
-            onChange(editor.getHTML())
-          }
-        />
+
+        <Editor value={value} setValue={setValue} />
+
         <div className="footer">
           <div className="tags">
             <ul>
@@ -133,7 +107,9 @@ export default function Add() {
               </form>
             )}
           </div>
-          <button>올리기</button>
+          <form onSubmit={onUpload}>
+            <button type="submit">올리기</button>
+          </form>
         </div>
       </S.AddWrapper>
     </>

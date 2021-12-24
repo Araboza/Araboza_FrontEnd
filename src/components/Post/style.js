@@ -15,6 +15,10 @@ export const PostWrapper = styled.div`
     width: 100%;
   }
 
+  svg {
+    width: 100%;
+  }
+
   .title {
     text-align: center;
     margin: 5px 0;

@@ -18,11 +18,11 @@ export const AddWrapper = styled.div`
     label {
       cursor: pointer;
       .cover_img {
-        width: 80%;
+        width: 30%;
         margin: 0 auto;
         height: 30vh;
         background-repeat: no-repeat;
-        background-size: auto;
+        background-size: cover;
         background-position: center;
       }
 

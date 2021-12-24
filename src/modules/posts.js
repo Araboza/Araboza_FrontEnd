@@ -3,6 +3,7 @@ import data from "../dummy.json";
 
 const SET_POST = "posts/SET_POST";
 const GET_POST = "posts/GET_POST";
+const ADD_POST = "posts/ADD_POST";
 const SET_LIKE = "myInfo/SET_LIKE";
 const ERROR = "posts/ERROR";
 
@@ -15,6 +16,7 @@ export const set_like = (data) => ({
   type: SET_LIKE,
   data,
 });
+export const addPost = (data) => ({ type: ADD_POST, data });
 export const error = (error) => ({
   type: ERROR,
   error,
@@ -29,6 +31,11 @@ function posts(state = initialState, action) {
       //   draft.posts.push(...action.data);
       // });
       return state;
+
+    case ADD_POST:
+      return produce(state, (draft) => {
+        draft.posts.push({ ...action.data });
+      });
 
     case SET_LIKE:
       return produce(state, (draft) => {
