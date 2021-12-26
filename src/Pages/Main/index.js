@@ -16,7 +16,10 @@ export default function Main() {
     return <h1>{error.message}</h1>;
   }
 
-  const onLike = (data) => dispatch(set_like(data));
+  const onLike = (data, e) => {
+    e.preventDefault();
+    dispatch(set_like(data));
+  };
 
   return (
     <>

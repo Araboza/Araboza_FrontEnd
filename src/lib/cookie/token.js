@@ -1,4 +1,4 @@
-export function getRefresh() {
+export function getCookie() {
   const cookie = document.cookie;
   const start = cookie.indexOf(process.env.REACT_APP_TOKEN_NAME);
   if (start === -1) return null;

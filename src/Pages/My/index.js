@@ -14,7 +14,8 @@ export default function My() {
 
   dispatch(set_user());
 
-  const onLike = (data) => {
+  const onLike = (data, e) => {
+    e.preventDefault();
     dispatch(set_like(data));
   };
 

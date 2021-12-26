@@ -11,8 +11,11 @@ export const PostWrapper = styled.div`
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
 
-  img {
-    width: 100%;
+  div {
+    display: flex;
+    img {
+      width: 100%;
+    }
   }
 
   svg {

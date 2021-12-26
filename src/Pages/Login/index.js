@@ -2,12 +2,11 @@ import React from "react";
 import * as I from "../../Asset/SVG";
 import * as S from "./style";
 import GoogleLogin from "react-google-login";
-// import { PostToken } from "../../lib/api/postToken";
+import { PostToken } from "../../lib/api/postToken";
 
 export default function Login() {
   const responseGoogle = (res) => {
-    console.log(res);
-    console.log(res.tokenId);
+    PostToken(res.tokenId);
   };
 
   return (
