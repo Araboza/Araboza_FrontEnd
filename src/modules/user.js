@@ -1,9 +1,11 @@
 import { getCookie } from "../lib/cookie/token";
 
 const GET_USER = "user/GET_USER";
+const LOGIN = "user/LOGIN";
 const LOGOUT_USER = "user/LOGOUT_USER";
 
 export const getUser = () => ({ type: GET_USER });
+export const login = (token) => ({ type: LOGIN, token });
 export const logoutUser = () => ({ type: LOGOUT_USER });
 
 const initialState = { cookie: null };

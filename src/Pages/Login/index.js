@@ -2,11 +2,13 @@ import React from "react";
 import * as I from "../../Asset/SVG";
 import * as S from "./style";
 import GoogleLogin from "react-google-login";
-import { PostToken } from "../../lib/api/postToken";
+import { useDispatch } from "react-redux";
+import { login } from "../../modules/user";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const responseGoogle = (res) => {
-    PostToken(res.tokenId);
+    dispatch(login(res.tokenId));
   };
 
   return (
