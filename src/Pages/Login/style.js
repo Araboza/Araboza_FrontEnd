@@ -1,63 +1,60 @@
 import styled from "styled-components";
 
 export const LoginWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  height: 100vh;
+  width: 70%;
+  h1 {
+    margin: 10px 0;
+  }
+  .text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
 
-  .left {
+  .login {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+`;
 
-    & > div {
-      margin: 0 auto;
-    }
+export const RegisterWrapper = styled.div`
+  width: 70%;
+  h1 {
+    font-size: 3rem;
+  }
 
-    h1 {
-      padding: 20px 0;
-      font-size: 2.3rem;
-    }
+  .register-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 15px 0;
+  }
 
-    p {
-      font-size: 1.3rem;
-      margin-bottom: 40px;
-    }
+  input {
+    width: 60%;
+    height: 40px;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background: #dbdbdb;
+    padding: 0 10px;
+    margin-right: 20px;
+  }
+  button {
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    height: 40px;
+    background: #cccccc;
+    cursor: pointer;
 
-    button {
-      width: 70%;
-      background: #000000;
-      border: none;
-      outline: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #ffffff;
-      padding: 10px 0;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-
-      .svg {
-        background: #ffffff;
-        color: #000000;
-        border-radius: 100%;
-        margin-right: 10px;
-        padding: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+    &:hover {
+      background: #aaaaaa;
     }
   }
 
-  .right {
-    grid-column: 2 / -1;
-    background: url(/PNG/LoginImg.png);
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  .errorMessage {
+    color: #ff0000;
   }
 `;

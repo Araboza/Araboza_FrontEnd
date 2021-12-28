@@ -1,5 +1,9 @@
 import api from "./api";
 
 export async function putLogout() {
-  await api.put("/user/logout");
+  try {
+    await api.put("/user/logout");
+  } catch (e) {
+    console.log(e);
+  }
 }

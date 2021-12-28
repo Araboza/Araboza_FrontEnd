@@ -1,14 +1,21 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { PostToken } from "../api/postToken";
+import { PostLogin } from "../api/postLogin";
 import { getUser } from "../../modules/user";
 import { putLogout } from "../api/putLogout";
+import { get_user } from "../../modules/myInfo";
 
 const LOGIN = "user/LOGIN";
 const LOGOUT_USER = "user/LOGOUT_USER";
 
 function* postToken(action) {
-  yield call(PostToken, action.token);
-  yield put(getUser());
+  try {
+    const user = yield call(PostLogin, action.token);
+    console.log(user);
+    yield put(getUser());
+    yield put(get_user(user));
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 function* PutLogout() {

@@ -1,6 +1,10 @@
 import api from "./api";
 
 export async function GetUser() {
-  const { data } = await api.get("/users");
-  return data;
+  try {
+    const { data } = await api.get("/user");
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 }
