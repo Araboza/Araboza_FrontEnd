@@ -11,9 +11,11 @@ export const LoginWrapper = styled.div`
   }
 
   .login {
-    display: flex;
-    justify-content: space-around;
     margin-top: 20px;
+
+    .right-btn {
+      margin-right: 20px;
+    }
   }
 `;
 
