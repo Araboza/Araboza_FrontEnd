@@ -16,7 +16,7 @@ export default function Main() {
     return <h1>{error.message}</h1>;
   }
 
-  const onLike = (data, e) => {
+  const onLike = (e, data) => {
     e.preventDefault();
     dispatch(set_like(data));
   };
@@ -26,7 +26,7 @@ export default function Main() {
       <Header />
       <S.MainWrapper>
         {posts.map((data) => (
-          <Post data={data} onLike={() => onLike(data)} key={data.id} />
+          <Post data={data} onLike={(e) => onLike(e, data)} key={data.id} />
         ))}
       </S.MainWrapper>
     </>
