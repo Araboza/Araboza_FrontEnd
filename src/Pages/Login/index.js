@@ -41,6 +41,7 @@ export default function Login() {
           <p className="text">포트폴리오를 제작하고 다른사람과 공유해 보세요</p>
           <div className="login">
             <GoogleLogin
+              className="right-btn"
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               onSuccess={(result) => loginSuccess(result)}
               onFailure={(result) => console.log(result)}
