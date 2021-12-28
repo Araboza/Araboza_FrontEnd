@@ -13,6 +13,7 @@ import { setPost } from "./modules/posts";
 import { getUser } from "./modules/user";
 
 import dotenv from "dotenv";
+import { set_user } from "./modules/myInfo";
 dotenv.config();
 
 const sagaMiddleware = createSagaMiddleware();
@@ -26,7 +27,10 @@ sagaMiddleware.run(rootSaga);
 
 store.dispatch(getUser());
 
-if (store.getState().user.cookie) store.dispatch(setPost());
+if (store.getState().user.cookie) {
+  store.dispatch(setPost());
+  store.dispatch(set_user());
+}
 
 ReactDOM.render(
   <Provider store={store}>

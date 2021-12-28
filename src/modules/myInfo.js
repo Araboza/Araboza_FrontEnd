@@ -22,9 +22,9 @@ export const set_like = (data) => ({
 const initialState = {
   user: {
     img: "./Teemo.jpg",
-    username: "Teemo",
+    id: "Teemo",
     major: ["FrontEnd", "BackEnd", "AWS"],
-    description: "프론트를 좋아합니다.",
+    introduce: "프론트를 좋아합니다.",
   },
   posts: [
     {
@@ -72,7 +72,10 @@ function myInfo(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
       return produce(state, (draft) => {
-        // draft.user = action.user;
+        draft.user.introduce = action.user.introduce;
+        draft.user.img = action.user.picture;
+        draft.user.id = action.user.id;
+        draft.user.major = action.user.major;
       });
     case SET_MY_POSTS:
       return produce(state, (draft) => {
