@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+import { set_show } from "./modules/notice";
+import { show_user } from "./modules/myInfo";
+import * as P from "./Pages";
 
 function App() {
+  const [noticeShow, userShow, cookie] = useSelector((state) => [
+    state.notice.show,
+    state.myInfo.show,
+    state.user.cookie,
+  ]);
+  const dispatch = useDispatch();
+  const onClick = () => {
+    if (noticeShow) dispatch(set_show());
+    if (userShow) dispatch(show_user());
+  };
+
+  if (cookie) {
+    return (
+      <>
+        {(noticeShow || userShow) && (
+          <div onClick={onClick} className="notice-close" />
+        )}
+        <Routes>
+          <Route path="/" element={<P.Main />} />
+          <Route path="/add" element={<P.Add />} />
+          <Route path="/@:user/:post" element={<P.Portfolio />} />
+          <Route path="/my" element={<P.My />} />
+          <Route path="/mylike" element={<P.LikePage />} />
+        </Routes>
+      </>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/*" element={<P.Login />} />
+    </Routes>
   );
 }
 
