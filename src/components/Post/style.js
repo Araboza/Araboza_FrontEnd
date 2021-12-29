@@ -5,6 +5,7 @@ export const PostWrapper = styled.div`
   transition: all 0.2s;
   border-radius: 5px;
   cursor: pointer;
+  min-height: 250px;
 
   &:hover {
     transform: scale(1.01);

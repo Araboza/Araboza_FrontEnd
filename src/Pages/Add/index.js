@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Editor from "../../components/Editor";
 import Header from "../../components/Header";
@@ -8,17 +7,14 @@ import { addPost } from "../../modules/posts";
 import * as S from "./style";
 
 export default function Add() {
-  const { user, posts } = useSelector((state) => ({
-    user: state.myInfo.user,
-    posts: state.posts.posts,
-  }));
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [value, setValue] = useState({
     title: "",
-    context: "",
+    contents: "",
     tagValue: "",
-    img: null,
+    imgUrl:
+      "https://cdnportal.mobalytics.gg/production/2021/06/23e17717-teemo-beemo-splash-crop.png",
   });
   const [tags, setTags] = useState([]);
 
@@ -39,7 +35,7 @@ export default function Add() {
   const onImg = (e) => {
     const reader = new FileReader();
     reader.onloadend = (finishedEvent) => {
-      setValue({ ...value, img: finishedEvent.currentTarget.result });
+      setValue({ ...value, imgUrl: finishedEvent.currentTarget.result });
     };
     if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
   };
@@ -48,14 +44,12 @@ export default function Add() {
     e.preventDefault();
     const { tagValue, ...data } = value;
 
-    if (!data.title || !data.context) {
+    if (!data.title || !data.contents) {
       alert("제목과 내용을 입력해 주세요");
       return;
     }
 
-    dispatch(
-      addPost({ ...data, tag: tags, name: user.username, id: posts.length + 1 })
-    );
+    dispatch(addPost({ ...data, tags }));
     navigate("/");
   };
 
@@ -72,9 +66,9 @@ export default function Add() {
         <div className="uploadImg">
           <input type="file" onChange={onImg} id="imgInput" />
           <label htmlFor="imgInput">
-            {value.img ? (
+            {value.imgUrl ? (
               <div
-                style={{ backgroundImage: `url(${value.img})` }}
+                style={{ backgroundImage: `url(${value.imgUrl})` }}
                 className="cover_img"
               />
             ) : (
