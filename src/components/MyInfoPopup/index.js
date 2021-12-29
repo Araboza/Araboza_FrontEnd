@@ -7,10 +7,15 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { set_like } from "../../modules/myInfo";
 
 export default function MyInfoPopup() {
   const dispatch = useDispatch();
-  const logout = () => dispatch(logoutUser());
+  const close = () => dispatch(set_like());
+  const logout = () => {
+    dispatch(logoutUser());
+    close();
+  };
 
   return (
     <S.PopupWrapper>
@@ -26,15 +31,21 @@ export default function MyInfoPopup() {
       <div className="navigation">
         <section>
           <AccountCircleIcon />
-          <Link to="/my">내 정보</Link>
+          <Link onClick={close} to="/my">
+            내 정보
+          </Link>
         </section>
         <section>
           <UploadIcon />
-          <Link to="/add">업로드</Link>
+          <Link onClick={close} to="/add">
+            업로드
+          </Link>
         </section>
         <section>
           <FavoriteBorderIcon />
-          <Link to="/mylike">좋아요 한 프로젝트</Link>
+          <Link onClick={close} to="/mylike">
+            좋아요 한 프로젝트
+          </Link>
         </section>
         <section onClick={logout} className="logout">
           <LogoutIcon />
