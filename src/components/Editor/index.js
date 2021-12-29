@@ -41,7 +41,7 @@ export default function Editor({ value, setValue }) {
   const onChange = (mark) => {
     setValue({
       ...value,
-      context: mark,
+      contents: mark,
     });
   };
 
@@ -52,7 +52,7 @@ export default function Editor({ value, setValue }) {
       theme="bubble"
       modules={modules}
       formats={formats}
-      value={value.context || ""}
+      value={value.contents || ""}
       onChange={(content, delta, source, editor) => onChange(editor.getHTML())}
     />
   );

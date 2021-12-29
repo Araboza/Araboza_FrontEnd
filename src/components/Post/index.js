@@ -11,11 +11,11 @@ export default function Post({ data, onLike }) {
         <div>
           {data.img ? <img src={data.img} alt="postImage" /> : <I.LogoS />}
         </div>
-        <h3 className="title">
+        <h2 className="title">
           {data.title.length > 15
             ? `${data.title.slice(0, 15)}...`
             : data.title}
-        </h3>
+        </h2>
         <div className="description">
           <div className="user">
             <span>{data.classNum}</span>

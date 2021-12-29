@@ -29,13 +29,14 @@ function posts(state = initialState, action) {
   switch (action.type) {
     case GET_POST:
       return produce(state, (draft) => {
-        draft.posts.push(...action.data);
+        draft.posts = [...action.data];
       });
 
-    case ADD_POST:
-      return produce(state, (draft) => {
-        draft.posts.push({ ...action.data });
-      });
+    // case ADD_POST:
+    //   return produce(state, (draft) => {
+    //     const id = draft.posts[draft.posts.length - 1].id + 1;
+    //     draft.posts.push({ ...action.data, id });
+    //   });
 
     case SET_LIKE:
       return produce(state, (draft) => {
