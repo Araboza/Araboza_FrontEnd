@@ -9,7 +9,11 @@ export default function Post({ data, onLike }) {
     <Link to={`/@${data.name}/${data.title}`}>
       <S.PostWrapper>
         <div>
-          {data.img ? <img src={data.img} alt="postImage" /> : <I.LogoS />}
+          {data.imgUrl ? (
+            <img src={data.imgUrl} alt="postImage" />
+          ) : (
+            <I.LogoS />
+          )}
         </div>
         <h2 className="title">
           {data.title.length > 15

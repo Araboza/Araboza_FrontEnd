@@ -6,6 +6,9 @@ export const PostWrapper = styled.div`
   border-radius: 5px;
   cursor: pointer;
   min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
     transform: scale(1.01);
