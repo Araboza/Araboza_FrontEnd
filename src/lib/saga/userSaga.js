@@ -10,7 +10,6 @@ const LOGOUT_USER = "user/LOGOUT_USER";
 function* postToken(action) {
   try {
     const user = yield call(PostLogin, action.token);
-    console.log(user);
     yield put(getUser());
     yield put(get_user(user));
   } catch (e) {

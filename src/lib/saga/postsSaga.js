@@ -1,15 +1,16 @@
 import { GetPosts } from "../api/getPosts";
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
-import { error, getPost } from "../../modules/posts";
+import { error, getPost, toggle } from "../../modules/posts";
 // import { GetLike } from "../api/getLike";
 
 const SET_POST = "posts/SET_POST";
-const SET_LIKE = "myInfo/SET_LIKE";
+const SET_LIKE = "posts/SET_LIKE";
 
 function* set_posts() {
   try {
     const res = yield call(GetPosts);
     yield put(getPost(res));
+    yield put(toggle());
   } catch (e) {
     yield put(error(e));
   }
