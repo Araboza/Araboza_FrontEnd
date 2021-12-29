@@ -1,10 +1,10 @@
 import produce from "immer";
-import data from "../dummy.json";
 
 const SET_POST = "posts/SET_POST";
 const GET_POST = "posts/GET_POST";
 const ADD_POST = "posts/ADD_POST";
-const SET_LIKE = "myInfo/SET_LIKE";
+const SET_LIKE = "posts/SET_LIKE";
+const TOGGLE = "posts/TOGGLE";
 const ERROR = "posts/ERROR";
 
 export const setPost = () => ({ type: SET_POST });
@@ -17,20 +17,20 @@ export const set_like = (data) => ({
   data,
 });
 export const addPost = (data) => ({ type: ADD_POST, data });
+export const toggle = () => ({ type: TOGGLE });
 export const error = (error) => ({
   type: ERROR,
   error,
 });
 
-const initialState = { posts: data, error: null };
+const initialState = { posts: [], error: null };
 
 function posts(state = initialState, action) {
   switch (action.type) {
     case GET_POST:
-      // return produce(state, (draft) => {
-      //   draft.posts.push(...action.data);
-      // });
-      return state;
+      return produce(state, (draft) => {
+        draft.posts.push(...action.data);
+      });
 
     case ADD_POST:
       return produce(state, (draft) => {
@@ -43,12 +43,38 @@ function posts(state = initialState, action) {
         const index = draft.posts.findIndex((i) => i.id === id);
 
         if (index !== -1) {
-          draft.posts[index].toggle
-            ? draft.posts[index].like++
-            : draft.posts[index].like--;
+          let likes = [];
+          try {
+            likes = localStorage.getItem("araboza_like").split(",");
+          } catch {
+            likes = [];
+          }
 
+          if (!draft.posts[index].toggle) {
+            draft.posts[index].like++;
+            likes.push(id);
+          } else {
+            console.log("hi");
+            draft.posts[index].like--;
+            const likesIndex = likes.indexOf(`${id}`);
+            likes.splice(likesIndex, likesIndex);
+            if (likesIndex === 0) likes = [];
+          }
+          console.log(likes);
           draft.posts[index].toggle = !draft.posts[index].toggle;
+          localStorage.setItem("araboza_like", likes);
         }
+      });
+
+    case TOGGLE:
+      return produce(state, (draft) => {
+        const likes = localStorage.getItem("araboza_like").split(",");
+        likes.forEach((i) => {
+          const index = draft.posts.findIndex(
+            (post) => post.id === parseInt(i)
+          );
+          if (index !== -1) draft.posts[index].toggle = true;
+        });
       });
 
     case ERROR:
