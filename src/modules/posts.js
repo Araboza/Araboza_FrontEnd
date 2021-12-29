@@ -55,13 +55,11 @@ function posts(state = initialState, action) {
             draft.posts[index].like++;
             likes.push(id);
           } else {
-            console.log("hi");
             draft.posts[index].like--;
             const likesIndex = likes.indexOf(`${id}`);
             likes.splice(likesIndex, likesIndex);
             if (likesIndex === 0) likes = [];
           }
-          console.log(likes);
           draft.posts[index].toggle = !draft.posts[index].toggle;
           localStorage.setItem("araboza_like", likes);
         }
