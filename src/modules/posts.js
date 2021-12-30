@@ -32,15 +32,10 @@ function posts(state = initialState, action) {
         draft.posts = [...action.data];
       });
 
-    // case ADD_POST:
-    //   return produce(state, (draft) => {
-    //     const id = draft.posts[draft.posts.length - 1].id + 1;
-    //     draft.posts.push({ ...action.data, id });
-    //   });
-
     case SET_LIKE:
       return produce(state, (draft) => {
         const { id } = action.data;
+        console.log(id);
         const index = draft.posts.findIndex((i) => i.id === id);
 
         if (index !== -1) {

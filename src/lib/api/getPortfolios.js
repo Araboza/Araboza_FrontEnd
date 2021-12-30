@@ -1,6 +1,6 @@
 import api from "./api";
 
-export async function GetPosts() {
+export async function GetPortfolios() {
   const { data } = await api.get("/portfolio");
   return data;
 }

@@ -9,6 +9,7 @@ export const PostWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 
   &:hover {
     transform: scale(1.01);
