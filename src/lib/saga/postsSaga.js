@@ -1,4 +1,4 @@
-import { GetPosts } from "../api/getPosts";
+import { GetPortfolios } from "../api/getPortfolios";
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { error, getPost, setPost, toggle } from "../../modules/posts";
 import { postAddPortfolio } from "../api/postAddPortfolio";
@@ -19,7 +19,8 @@ function* crate_post(action) {
 
 function* set_posts() {
   try {
-    const res = yield call(GetPosts);
+    const res = yield call(GetPortfolios);
+    console.log(res);
     yield put(getPost(res));
     yield put(toggle());
   } catch (e) {

@@ -6,7 +6,7 @@ import * as S from "./style";
 
 export default function Post({ data, onLike }) {
   return (
-    <Link to={`/@${data.user}/${data.title}`}>
+    <Link to={`/@${data.userId}/${data.title}`}>
       <S.PostWrapper>
         <div>
           {data.imgUrl ? (

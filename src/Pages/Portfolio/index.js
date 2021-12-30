@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from "react";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
-// import { GetLike } from "../../lib/api/getLike";
 import Heart from "../../components/Heart";
 
-// import { getPortfolio } from "../../lib/api/getPortfolio";
-// import { useParams } from "react-router-dom";
+import { getPortfolio } from "../../lib/api/getPortfolio";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import * as S from "./style";
+import { set_like } from "../../modules/posts";
+import { useDispatch } from "react-redux";
 
 export default function Portfolio() {
+  const dispatch = useDispatch();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  // const { user, post } = useParams();
+  const { user, post } = useParams();
 
   useEffect(() => {
     async function get() {
-      // const res = await getPortfolio({ user, post });
-      // setData(res);
+      const res = await getPortfolio({ user, post });
+
+      const date = new Date(res.createDate);
       setData({
-        id: 1,
-        title: "React가 마려워 지는 포스트",
-        img: "/Teemo.jpg",
-        description: "# 전승원 바보\n```js\nconsole.log('hello')\n```\n",
-        createDate: "12/21",
-        classNum: 1205,
-        name: "변찬우",
-        like: 34,
-        toggle: false,
+        ...res,
+        createDate: `${date.getFullYear()}/${date.getDate()}`,
       });
       setIsLoading(false);
     }
@@ -36,13 +32,25 @@ export default function Portfolio() {
 
   if (isLoading) return <h1>Loading...</h1>;
 
-  const onLike = async () => {
-    // await GetLike({ name: user, PostName: post });
-    setData({
-      ...data,
-      like: data.toggle ? data.like - 1 : data.like + 1,
-      toggle: !data.toggle,
-    });
+  const onLike = () => {
+    const toggle =
+      localStorage
+        .getItem("araboza_like")
+        .split(",")
+        .findIndex((i) => parseInt(i) === data.id) !== -1;
+
+    if (toggle)
+      setData({
+        ...data,
+        like: data.like - 1,
+      });
+    else
+      setData({
+        ...data,
+        like: data.like + 1,
+      });
+
+    dispatch(set_like({ id: data.id }));
   };
 
   return (
@@ -51,18 +59,26 @@ export default function Portfolio() {
       <S.PortfolioWrapper>
         <h1 className="title">{data.title}</h1>
         <div className="user">
-          <S.UserImg image={data.img} />
+          <S.UserImg image={data.user.picture} />
           <div className="info">
-            <h3>{data.name}</h3>
+            <h3>{data.user.id}</h3>
             <p>{data.createDate}</p>
           </div>
           <div className="heart">
             <p>{data.like}</p>
-            <Heart toggle={data.toggle} onLike={onLike} />
+            <Heart
+              toggle={
+                localStorage
+                  .getItem("araboza_like")
+                  .split(",")
+                  .findIndex((i) => parseInt(i) === data.id) !== -1
+              }
+              onLike={onLike}
+            />
           </div>
         </div>
         <div className="view">
-          <Viewer initialValue={data.description} />
+          <Viewer initialValue={data.contents} />
         </div>
       </S.PortfolioWrapper>
     </>
