@@ -21,10 +21,10 @@ export const set_like = (data) => ({
 
 const initialState = {
   user: {
-    img: "./Teemo.jpg",
-    id: "Teemo",
-    major: ["FrontEnd", "BackEnd", "AWS"],
-    introduce: "프론트를 좋아합니다.",
+    img: "",
+    id: "",
+    major: [],
+    introduce: "",
   },
   posts: [
     {

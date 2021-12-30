@@ -50,9 +50,9 @@ export const MyWrapper = styled.div`
 `;
 
 export const UserImg = styled.div`
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
+  width: 20vh;
+  height: auto;
+  border-radius: 50%;
   background-image: url(${(props) => props.image});
   background-position: center;
   background-repeat: no-repeat;

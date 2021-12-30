@@ -26,13 +26,19 @@ export default function My() {
         <div className="userInfo">
           <S.UserImg image={user.img}></S.UserImg>
           <div className="info">
-            <h1>{user.username}</h1>
+            <h1>{user.id}</h1>
             <p className="major">
-              {user.major.map((i) => (
-                <span key={i}>#{i}</span>
-              ))}
+              {user.major[0] ? (
+                user.major.map((i) => <span key={i}>#{i}</span>)
+              ) : (
+                <span>전공이 없습니다</span>
+              )}
             </p>
-            <p>{user.description}</p>
+            {user.description ? (
+              <p>{user.description}</p>
+            ) : (
+              <p>소개글이 없습니다</p>
+            )}
           </div>
           <div className="edit">
             <button>편집</button>
@@ -40,7 +46,7 @@ export default function My() {
         </div>
         <div className="portfolios">
           {posts.map((data) => (
-            <Post data={data} onLike={onLike} key={data.id} />
+            <Post data={data} onLike={(e) => onLike(data, e)} key={data.id} />
           ))}
         </div>
       </S.MyWrapper>
