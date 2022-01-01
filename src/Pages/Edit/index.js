@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Editor from "../../components/Editor";
 import Header from "../../components/Header";
+import { getPortfolio } from "../../lib/api/getPortfolio";
+import { postUpdatePortfolio } from "../../lib/api/postUpdatePortfolio";
+import { setPost } from "../../modules/posts";
 import * as S from "./style";
 
 export default function Edit() {
@@ -14,12 +17,30 @@ export default function Edit() {
     title: "",
     contents: "",
     tagValue: "",
-    imgUrl:
-      "https://cdnportal.mobalytics.gg/production/2021/06/23e17717-teemo-beemo-splash-crop.png",
+    imgUrl: "",
   });
   const [tags, setTags] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    async function get() {
+      // 유저가 맞는지 확인
+      // 아니면 다른 페이지로 이동
+      // 에러 페이지가 좋을까?
+
+      const { tags, ...res } = await getPortfolio({
+        user,
+        post,
+      });
+
+      setTags(tags);
+
+      setValue({
+        ...res,
+      });
+      setIsLoading(false);
+    }
+    get();
+  }, [user, post]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -45,16 +66,19 @@ export default function Edit() {
 
   const onUpload = (e) => {
     e.preventDefault();
-    const { tagValue, ...data } = value;
+    const { tagValue, user, like, createDate, id, ...data } = value;
 
     if (!data.title || !data.contents) {
       alert("제목과 내용을 입력해 주세요");
       return;
     }
 
-    // dispatch(addPost({ ...data, tags }));
+    postUpdatePortfolio(user, post, { ...data, tags });
+    dispatch(setPost());
     navigate("/");
   };
+
+  if (isLoading) return <h1>Loading...</h1>;
 
   return (
     <>
@@ -94,7 +118,7 @@ export default function Edit() {
             {tags.length <= 30 && (
               <form onSubmit={onSubmit}>
                 <input
-                  value={value.tagValue}
+                  value={value.tagValue || ""}
                   type="text"
                   placeholder="입력하고 Enter"
                   onChange={(e) =>

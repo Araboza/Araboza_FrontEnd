@@ -26,7 +26,8 @@ export const PortfolioWrapper = styled.div`
         align-items: flex-start;
 
         p {
-          span {
+          span,
+          a {
             margin-right: 10px;
           }
           .edit,

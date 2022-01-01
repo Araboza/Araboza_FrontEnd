@@ -4,7 +4,7 @@ import { Viewer } from "@toast-ui/react-editor";
 import Heart from "../../components/Heart";
 
 import { getPortfolio } from "../../lib/api/getPortfolio";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import Header from "../../components/Header";
 import * as S from "./style";
 import { set_like } from "../../modules/posts";
@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 
 export default function Portfolio() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const { user, post } = useParams();
@@ -53,6 +54,10 @@ export default function Portfolio() {
     dispatch(set_like({ id: data.id }));
   };
 
+  const onDelete = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <Header />
@@ -65,8 +70,12 @@ export default function Portfolio() {
               <h3>{data.user.id}</h3>
               <p>
                 <span>{data.createDate}</span>
-                <span className="edit">수정하기</span>
-                <span className="delete">삭제하기</span>
+                <Link to={`/edit/@${data.user.id}/${data.title}`}>
+                  수정하기
+                </Link>
+                <span className="delete" onClick={() => onDelete()}>
+                  삭제하기
+                </span>
               </p>
             </div>
           </div>
