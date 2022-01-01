@@ -1,29 +1,37 @@
 import React from "react";
 import * as S from "./style";
 import { logoutUser } from "../../modules/user";
+import { show_user } from "../../modules/myInfo";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import UploadIcon from "@mui/icons-material/Upload";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { set_like } from "../../modules/myInfo";
 
 export default function MyInfoPopup() {
   const dispatch = useDispatch();
-  const close = () => dispatch(set_like());
+  const { user } = useSelector((state) => ({
+    user: state.myInfo.user,
+  }));
+  const close = () => dispatch(show_user());
   const logout = () => {
     dispatch(logoutUser());
-    close();
   };
 
   return (
     <S.PopupWrapper>
       <div className="user">
-        <S.UserImg image={"/Teemo.jpg"} />
+        <S.UserImg image={user.img} />
         <div>
-          <div className="username">Teemo</div>
-          <div className="major">#FrontEnd</div>
+          <div className="username">{user.id}</div>
+          <div className="major">
+            {user.major[0] ? (
+              user.major.map((i) => <span>#{i}</span>)
+            ) : (
+              <span>전공이 없습니다</span>
+            )}
+          </div>
         </div>
         <div />
       </div>
