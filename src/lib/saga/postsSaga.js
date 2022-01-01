@@ -20,7 +20,6 @@ function* crate_post(action) {
 function* set_posts() {
   try {
     const res = yield call(GetPortfolios);
-    console.log(res);
     yield put(getPost(res));
     yield put(toggle());
   } catch (e) {

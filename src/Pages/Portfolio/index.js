@@ -28,7 +28,7 @@ export default function Portfolio() {
       setIsLoading(false);
     }
     get();
-  }, []);
+  }, [user, post]);
 
   if (isLoading) return <h1>Loading...</h1>;
 

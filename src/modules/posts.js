@@ -35,7 +35,6 @@ function posts(state = initialState, action) {
     case SET_LIKE:
       return produce(state, (draft) => {
         const { id } = action.data;
-        console.log(id);
         const index = draft.posts.findIndex((i) => i.id === id);
 
         if (index !== -1) {
