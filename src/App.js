@@ -29,6 +29,7 @@ function App() {
           <Route path="/@:user/:post" element={<P.Portfolio />} />
           <Route path="/my" element={<P.My />} />
           <Route path="/mylike" element={<P.LikePage />} />
+          <Route path="/edit/@:user/:post" element={<P.Edit />} />
         </Routes>
       </>
     );
