@@ -59,10 +59,16 @@ export default function Portfolio() {
       <S.PortfolioWrapper>
         <h1 className="title">{data.title}</h1>
         <div className="user">
-          <S.UserImg image={data.user.picture} />
-          <div className="info">
-            <h3>{data.user.id}</h3>
-            <p>{data.createDate}</p>
+          <div>
+            <S.UserImg image={data.user.picture} />
+            <div className="info">
+              <h3>{data.user.id}</h3>
+              <p>
+                <span>{data.createDate}</span>
+                <span className="edit">수정하기</span>
+                <span className="delete">삭제하기</span>
+              </p>
+            </div>
           </div>
           <div className="heart">
             <p>{data.like}</p>

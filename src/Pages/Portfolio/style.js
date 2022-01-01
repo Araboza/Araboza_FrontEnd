@@ -10,30 +10,43 @@ export const PortfolioWrapper = styled.div`
   }
 
   .user {
-    display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
     padding: 20px;
-    background: #eaeaea;
-    border-radius: 10px;
     margin: 30px 0;
-
-    .info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-  }
-
-  .heart {
-    width: 100%;
-    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 
-    p {
-      margin-right: 5px;
-      font-weight: bold;
+    div {
+      display: flex;
+      align-items: center;
+
+      .info {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        p {
+          span {
+            margin-right: 10px;
+          }
+          .edit,
+          .delete {
+            cursor: pointer;
+          }
+          .delete {
+            color: #ff0000;
+          }
+        }
+      }
+    }
+
+    .heart {
+      display: flex;
+      align-items: center;
+      p {
+        margin-right: 5px;
+        font-weight: bold;
+      }
     }
   }
 
