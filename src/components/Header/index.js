@@ -13,9 +13,10 @@ import MyInfoPopup from "../MyInfoPopup";
 
 export default function Header() {
   const dispatch = useDispatch();
-  const [noticeShow, userShow] = useSelector((state) => [
+  const [noticeShow, userShow, userImg] = useSelector((state) => [
     state.notice.show,
     state.myInfo.show,
+    state.myInfo.user.img,
   ]);
   const show_notice = () => {
     dispatch(set_show());
@@ -47,7 +48,7 @@ export default function Header() {
             {noticeShow && <Notification />}
           </div>
           <div className="icon my">
-            <S.UserImg image="/Teemo.jpg" onClick={user_show} />
+            <S.UserImg image={userImg} onClick={user_show} />
             {userShow && <MyInfoPopup />}
           </div>
         </div>

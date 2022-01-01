@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PopupWrapper = styled.div`
   position: absolute;
-  width: 15vw;
+  width: 300px;
   top: 110%;
   right: 0;
   background: #fff;
