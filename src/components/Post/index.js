@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import * as I from "../../Asset/SVG";
 import * as S from "./style";
 
-export default function Post({ data, onLike }) {
+export default function Post({ data, user, onLike }) {
   return (
-    <Link to={`/@${data.userId}/${data.title}`}>
+    <Link to={`/@${data.userId || user.id}/${data.title}`}>
       <S.PostWrapper>
         <div>
           {data.imgUrl ? (

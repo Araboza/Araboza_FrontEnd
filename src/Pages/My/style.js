@@ -54,7 +54,6 @@ export const UserImg = styled.div`
   width: 20vh;
   height: auto;
   border-radius: 50%;
-  background-image: url(${(props) => props.image});
   background-position: center;
   background-repeat: no-repeat;
   background-size: 150%;

@@ -22,8 +22,7 @@ function App() {
           <Route path="/" element={<P.Main />} />
           <Route path="/add" element={<P.Add />} />
           <Route path="/@:user/:post" element={<P.Portfolio />} />
-          <Route path="/my" element={<P.My />} />
-          <Route path="/my/@:user/:post" element={<P.My />} />
+          <Route path="/@:user/" element={<P.My />} />
           <Route path="/edit/@:user/:post" element={<P.Edit />} />
           <Route path="*" element={<P.NotFound />} />
         </Routes>

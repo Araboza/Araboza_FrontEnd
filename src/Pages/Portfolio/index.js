@@ -4,7 +4,7 @@ import { Viewer } from "@toast-ui/react-editor";
 import Heart from "../../components/Heart";
 
 import { getPortfolio } from "../../lib/api/getPortfolio";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import * as S from "./style";
 import { setPost, set_like } from "../../modules/posts";
@@ -21,21 +21,23 @@ export default function Portfolio() {
 
   useEffect(() => {
     async function get() {
-      const [res, owner] = await getPortfolio({ user, post });
+      try {
+        const [res, owner] = await getPortfolio({ user, post });
 
-      setOwner(owner);
+        setOwner(owner);
 
-      if (!res) navigate("/notfound");
-
-      const date = new Date(res.createDate);
-      setData({
-        ...res,
-        createDate: `${date.getFullYear()}/${date.getDate()}`,
-      });
-      setIsLoading(false);
+        const date = new Date(res.createDate);
+        setData({
+          ...res,
+          createDate: `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`,
+        });
+        setIsLoading(false);
+      } catch (e) {
+        navigate("/notfound");
+      }
     }
     get();
-  }, [user, post, navigate]);
+  }, []);
 
   if (isLoading) return <h1>Loading...</h1>;
 
@@ -73,16 +75,23 @@ export default function Portfolio() {
         <h1 className="title">{data.title}</h1>
         <div className="user">
           <div>
-            <S.UserImg image={data.user.picture} />
+            <S.UserImg
+              image={data.user.picture}
+              onClick={() => navigate(`/@${user}`)}
+            />
             <div className="info">
-              <h3>{data.user.id}</h3>
+              <h3 onClick={() => navigate(`/@${user}`)}>{data.user.id}</h3>
               {owner && (
                 <p>
                   <span>{data.createDate}</span>
-                  <Link to={`/edit/@${data.user.id}/${data.title}`}>
+                  <span
+                    onClick={() =>
+                      navigate(`/edit/@${data.user.id}/${data.title}`)
+                    }
+                  >
                     수정하기
-                  </Link>
-                  <span className="delete" onClick={() => onDelete()}>
+                  </span>
+                  <span className="delete" onClick={onDelete}>
                     삭제하기
                   </span>
                 </p>

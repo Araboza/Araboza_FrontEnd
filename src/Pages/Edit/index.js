@@ -66,7 +66,7 @@ export default function Edit() {
 
   const onUpload = (e) => {
     e.preventDefault();
-    const { tagValue, user, like, createDate, id, ...data } = value;
+    const { tagValue, user, like, createDate, ...data } = value;
 
     if (!data.title || !data.contents) {
       alert("제목과 내용을 입력해 주세요");
