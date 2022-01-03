@@ -40,7 +40,7 @@ export default function MyInfoPopup() {
       <div className="navigation">
         <section>
           <AccountCircleIcon />
-          <Link onClick={close} to="/my">
+          <Link onClick={close} to={`/@${user.id}`}>
             내 정보
           </Link>
         </section>

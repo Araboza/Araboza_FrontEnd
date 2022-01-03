@@ -26,12 +26,14 @@ export const PortfolioWrapper = styled.div`
         align-items: flex-start;
 
         p {
+          display: flex;
           span,
           a {
             margin-right: 10px;
           }
           .edit,
-          .delete {
+          .delete,
+          span {
             cursor: pointer;
           }
           .delete {
