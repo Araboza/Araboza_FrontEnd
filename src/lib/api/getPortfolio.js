@@ -6,5 +6,6 @@ export async function getPortfolio({ user, post }) {
     return data;
   } catch (e) {
     console.log("연결 할 수 없습니다");
+    return undefined;
   }
 }

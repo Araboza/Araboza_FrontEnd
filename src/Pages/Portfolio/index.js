@@ -7,19 +7,25 @@ import { getPortfolio } from "../../lib/api/getPortfolio";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import Header from "../../components/Header";
 import * as S from "./style";
-import { set_like } from "../../modules/posts";
+import { setPost, set_like } from "../../modules/posts";
 import { useDispatch } from "react-redux";
+import { deleteProtfolio } from "../../lib/api/deletePortfolio";
 
 export default function Portfolio() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [owner, setOwner] = useState(false);
   const { user, post } = useParams();
 
   useEffect(() => {
     async function get() {
-      const res = await getPortfolio({ user, post });
+      const [res, owner] = await getPortfolio({ user, post });
+
+      setOwner(owner);
+
+      if (!res) navigate("/notfound");
 
       const date = new Date(res.createDate);
       setData({
@@ -29,7 +35,7 @@ export default function Portfolio() {
       setIsLoading(false);
     }
     get();
-  }, [user, post]);
+  }, [user, post, navigate]);
 
   if (isLoading) return <h1>Loading...</h1>;
 
@@ -51,10 +57,12 @@ export default function Portfolio() {
         like: data.like + 1,
       });
 
-    dispatch(set_like({ id: data.id }));
+    dispatch(set_like(data));
   };
 
   const onDelete = () => {
+    deleteProtfolio(user, post);
+    dispatch(setPost());
     navigate("/");
   };
 
@@ -68,15 +76,17 @@ export default function Portfolio() {
             <S.UserImg image={data.user.picture} />
             <div className="info">
               <h3>{data.user.id}</h3>
-              <p>
-                <span>{data.createDate}</span>
-                <Link to={`/edit/@${data.user.id}/${data.title}`}>
-                  수정하기
-                </Link>
-                <span className="delete" onClick={() => onDelete()}>
-                  삭제하기
-                </span>
-              </p>
+              {owner && (
+                <p>
+                  <span>{data.createDate}</span>
+                  <Link to={`/edit/@${data.user.id}/${data.title}`}>
+                    수정하기
+                  </Link>
+                  <span className="delete" onClick={() => onDelete()}>
+                    삭제하기
+                  </span>
+                </p>
+              )}
             </div>
           </div>
           <div className="heart">
@@ -95,6 +105,13 @@ export default function Portfolio() {
         <div className="view">
           <Viewer initialValue={data.contents} />
         </div>
+        <ul className="tags">
+          {data.tags.map((i) => (
+            <li className="tag" key={i}>
+              {i}
+            </li>
+          ))}
+        </ul>
       </S.PortfolioWrapper>
     </>
   );

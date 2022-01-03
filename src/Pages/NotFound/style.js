@@ -9,5 +9,6 @@ export const NotFoundWrapper = styled.div`
 
   h1 {
     margin-top: 20px;
+    cursor: pointer;
   }
 `;

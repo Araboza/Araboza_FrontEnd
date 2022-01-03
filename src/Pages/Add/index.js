@@ -16,6 +16,7 @@ export default function Add() {
     imgUrl:
       "https://cdnportal.mobalytics.gg/production/2021/06/23e17717-teemo-beemo-splash-crop.png",
   });
+  const [showImg, setShowImg] = useState(false);
   const [tags, setTags] = useState([]);
 
   const onSubmit = (e) => {
@@ -29,15 +30,12 @@ export default function Add() {
   };
 
   const onClick = (e) => {
-    setTags(tags.filter((i) => i !== e.target.innerText));
+    setTags(tags.filter((i) => `# ${i}` !== e.target.innerText));
   };
 
   const onImg = (e) => {
-    const reader = new FileReader();
-    reader.onloadend = (finishedEvent) => {
-      setValue({ ...value, imgUrl: finishedEvent.currentTarget.result });
-    };
-    if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
+    e.preventDefault();
+    setShowImg(true);
   };
 
   const onUpload = (e) => {
@@ -63,19 +61,23 @@ export default function Add() {
           type="text"
           placeholder="제목을 입력하세요"
         />
-        <div className="uploadImg">
-          <input type="file" onChange={onImg} id="imgInput" />
-          <label htmlFor="imgInput">
-            {value.imgUrl ? (
-              <div
-                style={{ backgroundImage: `url(${value.imgUrl})` }}
-                className="cover_img"
-              />
-            ) : (
-              <span>커버 이미지</span>
-            )}
-          </label>
-        </div>
+        <form className="uploadImg" onSubmit={onImg}>
+          {!showImg ? (
+            <input
+              type="text"
+              value={value.imgUrl || ""}
+              id="imgInput"
+              onChange={(e) => setValue({ ...value, imgUrl: e.target.value })}
+              placeholder="커버 이미지 url 입력"
+            />
+          ) : (
+            <div
+              style={{ backgroundImage: `url(${value.imgUrl})` }}
+              className="cover_img"
+              onClick={() => setShowImg(false)}
+            />
+          )}
+        </form>
 
         <Editor value={value} setValue={setValue} />
 

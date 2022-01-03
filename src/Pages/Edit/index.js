@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Editor from "../../components/Editor";
 import Header from "../../components/Header";
 import { getPortfolio } from "../../lib/api/getPortfolio";
-import { postUpdatePortfolio } from "../../lib/api/postUpdatePortfolio";
+import { postUpdatePortfolio } from "../../lib/api/patchUpdatePortfolio";
 import { setPost } from "../../modules/posts";
 import * as S from "./style";
 
 export default function Edit() {
   const dispatch = useDispatch();
+  const { posts } = useSelector((state) => ({
+    posts: state.posts.posts,
+  }));
   const navigate = useNavigate();
   const { user, post } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +22,7 @@ export default function Edit() {
     tagValue: "",
     imgUrl: "",
   });
+  const [showImg, setShowImg] = useState(false);
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
@@ -27,10 +31,12 @@ export default function Edit() {
       // 아니면 다른 페이지로 이동
       // 에러 페이지가 좋을까?
 
-      const { tags, ...res } = await getPortfolio({
+      const [{ tags, ...res }, owner] = await getPortfolio({
         user,
         post,
       });
+
+      if (!owner) navigate("/");
 
       setTags(tags);
 
@@ -40,7 +46,7 @@ export default function Edit() {
       setIsLoading(false);
     }
     get();
-  }, [user, post]);
+  }, [user, post, navigate]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -53,15 +59,12 @@ export default function Edit() {
   };
 
   const onClick = (e) => {
-    setTags(tags.filter((i) => i !== e.target.innerText));
+    setTags(tags.filter((i) => `# ${i}` !== e.target.innerText));
   };
 
   const onImg = (e) => {
-    const reader = new FileReader();
-    reader.onloadend = (finishedEvent) => {
-      setValue({ ...value, imgUrl: finishedEvent.currentTarget.result });
-    };
-    if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
+    e.preventDefault();
+    setShowImg(true);
   };
 
   const onUpload = (e) => {
@@ -73,9 +76,11 @@ export default function Edit() {
       return;
     }
 
-    postUpdatePortfolio(user, post, { ...data, tags });
-    dispatch(setPost());
+    postUpdatePortfolio(user.id, post, { ...data, tags });
     navigate("/");
+    setTimeout(() => {
+      dispatch(setPost());
+    }, 500);
   };
 
   if (isLoading) return <h1>Loading...</h1>;
@@ -90,19 +95,23 @@ export default function Edit() {
           type="text"
           placeholder="제목을 입력하세요"
         />
-        <div className="uploadImg">
-          <input type="file" onChange={onImg} id="imgInput" />
-          <label htmlFor="imgInput">
-            {value.imgUrl ? (
-              <div
-                style={{ backgroundImage: `url(${value.imgUrl})` }}
-                className="cover_img"
-              />
-            ) : (
-              <span>커버 이미지</span>
-            )}
-          </label>
-        </div>
+        <form className="uploadImg" onSubmit={onImg}>
+          {!showImg ? (
+            <input
+              type="text"
+              value={value.imgUrl || ""}
+              id="imgInput"
+              onChange={(e) => setValue({ ...value, imgUrl: e.target.value })}
+              placeholder="커버 이미지 url 입력"
+            />
+          ) : (
+            <div
+              style={{ backgroundImage: `url(${value.imgUrl})` }}
+              className="cover_img"
+              onClick={() => setShowImg(false)}
+            />
+          )}
+        </form>
 
         <Editor value={value} setValue={setValue} />
 

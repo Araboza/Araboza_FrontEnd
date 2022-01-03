@@ -56,6 +56,21 @@ export const PortfolioWrapper = styled.div`
       border: none;
     }
   }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    max-width: 500px;
+    margin-bottom: 10px;
+
+    .tag {
+      padding: 5px 10px;
+      margin: 5px;
+      background: #e2e2e2;
+      border-radius: 50px;
+    }
+  }
 `;
 
 export const UserImg = styled.div`
