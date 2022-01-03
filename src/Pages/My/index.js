@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import { useSelector, useDispatch } from "react-redux";
 import * as S from "./style";
 import Post from "../../components/Post";
 import { set_like, set_user } from "../../modules/myInfo";
+import { useParams } from "react-router-dom";
 
 export default function My() {
+  const params = useParams();
   const dispatch = useDispatch();
   const { user, posts } = useSelector((state) => ({
     user: state.myInfo.user,
