@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Editor from "../../components/Editor";
 import Header from "../../components/Header";
@@ -10,9 +10,6 @@ import * as S from "./style";
 
 export default function Edit() {
   const dispatch = useDispatch();
-  const { posts } = useSelector((state) => ({
-    posts: state.posts.posts,
-  }));
   const navigate = useNavigate();
   const { user, post } = useParams();
   const [isLoading, setIsLoading] = useState(true);
