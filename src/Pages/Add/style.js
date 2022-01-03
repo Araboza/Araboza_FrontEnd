@@ -12,25 +12,23 @@ export const AddWrapper = styled.div`
     margin-bottom: 10px;
 
     input {
-      display: none;
+      border: none;
+      outline: none;
+    }
+    .cover_img {
+      cursor: pointer;
+      width: 100%;
+      margin: 0 auto;
+      height: 30vh;
+      background-repeat: no-repeat;
+      background-size: 80%;
+      background-position: center;
     }
 
-    label {
-      cursor: pointer;
-      .cover_img {
-        width: 30%;
-        margin: 0 auto;
-        height: 30vh;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-      }
-
-      span {
-        padding: 10px;
-        background: #e2e2e2;
-        border-radius: 10px;
-      }
+    span {
+      padding: 10px;
+      background: #e2e2e2;
+      border-radius: 10px;
     }
   }
 
