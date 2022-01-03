@@ -3,6 +3,7 @@ import * as S from "./style";
 import * as I from "../../Asset/SVG";
 import HomeIcon from "@mui/icons-material/Home";
 import UploadIcon from "@mui/icons-material/Upload";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { show_user, set_user } from "../../modules/myInfo";
@@ -33,6 +34,9 @@ export default function Header() {
           <Link className="icon" to="/add">
             <UploadIcon />
           </Link>
+          <a className="icon" href="https://github.com/Araboza">
+            <GitHubIcon />
+          </a>
           <div className="icon my">
             <S.UserImg image={userImg} onClick={user_show} />
             {userShow && <MyInfoPopup />}
