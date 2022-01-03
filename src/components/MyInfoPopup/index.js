@@ -4,7 +4,6 @@ import { logoutUser } from "../../modules/user";
 import { show_user } from "../../modules/myInfo";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import UploadIcon from "@mui/icons-material/Upload";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -49,12 +48,6 @@ export default function MyInfoPopup() {
           <UploadIcon />
           <Link onClick={close} to="/add">
             업로드
-          </Link>
-        </section>
-        <section>
-          <FavoriteBorderIcon />
-          <Link onClick={close} to="/mylike">
-            좋아요 한 프로젝트
           </Link>
         </section>
         <section onClick={logout} className="logout">
