@@ -7,9 +7,10 @@ import UploadIcon from "@mui/icons-material/Upload";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function MyInfoPopup() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({
     user: state.myInfo.user,
@@ -17,6 +18,7 @@ export default function MyInfoPopup() {
   const close = () => dispatch(show_user());
   const logout = () => {
     dispatch(logoutUser());
+    navigate("/");
   };
 
   return (

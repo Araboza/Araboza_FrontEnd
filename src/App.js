@@ -30,6 +30,7 @@ function App() {
           <Route path="/my" element={<P.My />} />
           <Route path="/mylike" element={<P.LikePage />} />
           <Route path="/edit/@:user/:post" element={<P.Edit />} />
+          <Route path="*" element={<P.NotFound />} />
         </Routes>
       </>
     );
@@ -37,7 +38,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/*" element={<P.Login />} />
+      <Route path="/" element={<P.Login />} />
+      <Route path="*" element={<P.NotFound />} />
     </Routes>
   );
 }
