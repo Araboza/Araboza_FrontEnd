@@ -30,7 +30,7 @@ export default function Add() {
   };
 
   const onClick = (e) => {
-    setTags(tags.filter((i) => i !== e.target.innerText));
+    setTags(tags.filter((i) => `# ${i}` !== e.target.innerText));
   };
 
   const onImg = (e) => {
@@ -68,6 +68,7 @@ export default function Add() {
               value={value.imgUrl || ""}
               id="imgInput"
               onChange={(e) => setValue({ ...value, imgUrl: e.target.value })}
+              placeholder="커버 이미지 url 입력"
             />
           ) : (
             <div

@@ -2,7 +2,7 @@ import { GetPortfolios } from "../api/getPortfolios";
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { error, getPost, setPost, toggle } from "../../modules/posts";
 import { postAddPortfolio } from "../api/postAddPortfolio";
-// import { GetLike } from "../api/getLike";
+import { GetLike } from "../api/getLike";
 
 const ADD_POST = "posts/ADD_POST";
 const SET_POST = "posts/SET_POST";
@@ -28,8 +28,9 @@ function* set_posts() {
 }
 
 function* setLike(action) {
+  console.log(action);
   try {
-    // yield call(GetLike, action);
+    yield call(GetLike, action.data);
   } catch (e) {
     yield put(error(e));
   }
