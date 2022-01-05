@@ -37,6 +37,7 @@ export default function Portfolio() {
       }
     }
     get();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) return <h1>Loading...</h1>;
