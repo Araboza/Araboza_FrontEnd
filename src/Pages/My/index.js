@@ -59,9 +59,7 @@ export default function My() {
               <p>소개글이 없습니다</p>
             )}
           </div>
-          <div className="edit">
-            <button>편집</button>
-          </div>
+          <div className="edit"></div>
         </div>
         <div className="portfolios">
           {posts.map((data) => (

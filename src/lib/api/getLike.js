@@ -9,6 +9,6 @@ export async function GetLike(data) {
       { toggle: index !== -1 ? true : false }
     );
   } catch (e) {
-    console.log(e);
+    localStorage.setItem("araboza_like", "");
   }
 }

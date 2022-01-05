@@ -13,8 +13,7 @@ export default function Add() {
     title: "",
     contents: "",
     tagValue: "",
-    imgUrl:
-      "https://cdnportal.mobalytics.gg/production/2021/06/23e17717-teemo-beemo-splash-crop.png",
+    imgUrl: "",
   });
   const [showImg, setShowImg] = useState(false);
   const [tags, setTags] = useState([]);

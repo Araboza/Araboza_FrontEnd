@@ -53,9 +53,19 @@ export const PortfolioWrapper = styled.div`
     }
   }
 
+  .cover {
+    display: flex;
+    justify-content: center;
+    .cover-img {
+      width: auto;
+      height: 50vh;
+    }
+  }
+
   .view {
-    h1 {
-      border: none;
+    .tui-editor-contents {
+      padding: 50px 0;
+      font-size: 1rem;
     }
   }
 

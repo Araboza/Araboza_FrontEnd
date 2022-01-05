@@ -64,7 +64,9 @@ export default function Portfolio() {
 
   const onDelete = () => {
     deleteProtfolio(user, post);
-    dispatch(setPost());
+    setTimeout(() => {
+      dispatch(setPost());
+    }, 500);
     navigate("/");
   };
 
@@ -111,6 +113,11 @@ export default function Portfolio() {
             />
           </div>
         </div>
+        {data.imgUrl && (
+          <div className="cover">
+            <img className="cover-img" src={data.imgUrl} alt="cover-img" />
+          </div>
+        )}
         <div className="view">
           <Viewer initialValue={data.contents} />
         </div>

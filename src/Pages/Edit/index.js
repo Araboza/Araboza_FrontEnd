@@ -47,7 +47,7 @@ export default function Edit() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const tagValue = value.tagValue.replace(" ", "");
+    const tagValue = value.tagValue.replace(/(\s*)/g, "");
     if (tagValue === "") {
     } else if (tags.findIndex((i) => i === tagValue) === -1) {
       setTags([...tags, tagValue]);
